@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شكراً — تم استلام طلبك | فيتجوم عُمان</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<style>
+:root{
+--red:#c41e24;
+--red-deep:#9a1218;
+--green:#1a9348;
+--green-light:#2fb85a;
+--cream:#f7f6f4;
+--ink:#1c1412;
+--muted:#5e534c;
+--radius:18px;
+--shadow:0 20px 48px rgba(196,30,36,.14);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+font-family:"Cairo",sans-serif;
+background:linear-gradient(180deg,#fff 0%,var(--cream) 100%);
+color:var(--ink);
+min-height:100vh;
+line-height:1.75;
+-webkit-font-smoothing:antialiased;
+}
+.top{
+background:var(--red);color:#fff;text-align:center;
+padding:.65rem 1rem;font-weight:700;font-size:.85rem;
+}
+.header{
+padding:1rem;text-align:center;border-bottom:3px solid var(--green);
+background:#fff;
+}
+.header img{height:44px;margin-inline:auto}
+.main{
+max-width:640px;margin:0 auto;padding:clamp(1.5rem,5vw,2.5rem) 1.25rem 3rem;
+}
+.card{
+background:#fff;border-radius:var(--radius);
+padding:clamp(1.5rem,4vw,2.25rem);
+box-shadow:var(--shadow);
+border:2px solid rgba(26,147,72,.15);
+text-align:center;
+}
+.success-icon{
+width:72px;height:72px;margin:0 auto 1rem;
+border-radius:50%;background:linear-gradient(135deg,var(--green),var(--green-light));
+color:#fff;display:grid;place-items:center;font-size:2rem;
+box-shadow:0 10px 28px rgba(26,147,72,.35);
+animation:pop .5s cubic-bezier(.22,1,.36,1);
+}
+@keyframes pop{0%{transform:scale(.6);opacity:0}100%{transform:scale(1);opacity:1}}
+.title-success{
+font-size:clamp(1.35rem,4vw,1.65rem);font-weight:900;
+color:var(--green);margin-bottom:1.25rem;
+}
+.msg{
+font-size:clamp(.95rem,2.4vw,1.08rem);font-weight:600;
+color:var(--ink);margin-bottom:1rem;line-height:1.85;
+}
+.msg strong{color:var(--red);font-weight:900}
+.msg.highlight{
+background:rgba(196,30,36,.06);border-right:4px solid var(--red);
+padding:.85rem 1rem;border-radius:12px;text-align:right;
+margin:1rem 0;
+}
+.order-box{
+background:var(--cream);border-radius:14px;
+padding:1rem 1.15rem;margin:1.25rem 0;text-align:right;
+border:1px dashed rgba(26,147,72,.35);
+}
+.order-box h3{font-size:.9rem;color:var(--green);margin-bottom:.65rem;font-weight:800}
+.order-row{
+display:flex;justify-content:space-between;gap:.5rem;
+font-size:.88rem;padding:.35rem 0;border-bottom:1px solid rgba(0,0,0,.05);
+}
+.order-row:last-child{border:none;font-weight:800;color:var(--red);font-size:1rem;padding-top:.5rem}
+.steps{
+display:grid;gap:.75rem;margin:1.5rem 0;text-align:right;
+}
+.step-item{
+display:flex;align-items:flex-start;gap:.75rem;
+padding:.85rem 1rem;background:var(--cream);border-radius:14px;
+}
+.step-icon{
+width:44px;height:44px;flex-shrink:0;border-radius:12px;
+display:grid;place-items:center;font-size:1.1rem;color:#fff;
+}
+.step-item:nth-child(1) .step-icon{background:var(--red)}
+.step-item:nth-child(2) .step-icon{background:var(--green)}
+.step-item:nth-child(3) .step-icon{background:var(--green-dark)}
+.step-item strong{display:block;font-size:.9rem;margin-bottom:.15rem}
+.step-item span{font-size:.8rem;color:var(--muted)}
+.phone-pulse{
+display:inline-flex;align-items:center;gap:.5rem;
+margin-top:1rem;padding:.75rem 1.1rem;
+background:linear-gradient(135deg,var(--red),#e53935);
+color:#fff;border-radius:12px;font-weight:800;font-size:.92rem;
+animation:pulse-ring 2s ease-in-out infinite;
+}
+@keyframes pulse-ring{0%,100%{box-shadow:0 0 0 0 rgba(196,30,36,.4)}50%{box-shadow:0 0 0 12px rgba(196,30,36,0)}}
+.delivery-note{
+font-size:1rem;font-weight:800;color:var(--red);
+margin-top:1.25rem;line-height:1.6;
+}
+.footer-note{
+text-align:center;margin-top:2rem;font-size:.78rem;color:var(--muted);
+}
+</style>
+</head>
+<body>
+
+<div class="top">متجر فيتجوم الرسمي — عُمان · دفع عند الاستلام</div>
+
+<header class="header">
+<a href="index.html"><img src="assets/fitgum-logo.svg" alt="فيتجوم" width="160" height="44"></a>
+</header>
+
+<main class="main">
+<article class="card">
+<div class="success-icon" aria-hidden="true"><i class="fas fa-check"></i></div>
+
+<h1 class="title-success">تم استلام طلبك بنجاح!</h1>
+
+<p class="msg">آلاف الأشخاص يطلبون هذا المنتج يومياً، <strong>والكميات محدودة جداً!</strong></p>
+
+<p class="msg highlight">لذا فإن <strong>تأكيدك في المكالمة القادمة ضروري</strong> حتى نجهز طلبك قبل أن يتحول إلى عميل آخر على قائمة الانتظار.</p>
+
+<p class="msg">العديد ممن جربوا المنتج عادوا وطلبوه للمرة الثالثة!</p>
+
+<div class="order-box" id="order-summary" hidden>
+<h3><i class="fas fa-receipt"></i> ملخص طلبك</h3>
+<div class="order-row"><span>الاسم</span><span id="sum-name">—</span></div>
+<div class="order-row"><span>الجوال</span><span id="sum-phone" dir="ltr">—</span></div>
+<div class="order-row"><span>المنطقة</span><span id="sum-city">—</span></div>
+<div class="order-row"><span>الباقة</span><span id="sum-package">—</span></div>
+<div class="order-row"><span>المبلغ (عند الاستلام)</span><span id="sum-price">—</span></div>
+</div>
+
+<div class="steps">
+<div class="step-item">
+<div class="step-icon"><i class="fas fa-phone-volume"></i></div>
+<div>
+<strong>١ — تأكيد الطلب بالهاتف</strong>
+<span>يرجى البقاء بالقرب من هاتفك، سيتصل بك أحد ممثلينا خلال دقائق!</span>
+</div>
+</div>
+<div class="step-item">
+<div class="step-icon"><i class="fas fa-clipboard-check"></i></div>
+<div>
+<strong>٢ — تجهيز الطلب</strong>
+<span>بعد تأكيدك، نحضّر طلبك مباشرة في المستودع</span>
+</div>
+</div>
+<div class="step-item">
+<div class="step-icon"><i class="fas fa-truck-fast"></i></div>
+<div>
+<strong>٣ — التوصيل لعنوانك</strong>
+<span>شحن مباشر بعد التأكيد — عادة خلال 24 إلى 48 ساعة</span>
+</div>
+</div>
+</div>
+
+<div class="phone-pulse">
+<i class="fas fa-mobile-screen-button"></i>
+انتظر مكالمة التأكيد الآن
+</div>
+
+<p class="delivery-note">
+بعد تأكيد الطلب، سيتم شحنه مباشرة إلى عنوانك خلال <strong>24 إلى 48 ساعة</strong>.
+<br>الدفع عند الاستلام فقط — لا حاجة لأي دفع مسبق.
+</p>
+</article>
+
+<p class="footer-note">فيتجوم · علكة خل التفاح · مكمل غذائي</p>
+</main>
+
+<script>
+(function () {
+  const q = new URLSearchParams(location.search);
+  const name = q.get("name");
+  const phone = q.get("phone");
+  const city = q.get("city");
+  const pkg = q.get("package");
+  const price = q.get("price");
+
+  if (name || phone || pkg) {
+    document.getElementById("order-summary").hidden = false;
+    document.getElementById("sum-name").textContent = name || "—";
+    document.getElementById("sum-phone").textContent = phone || "—";
+    document.getElementById("sum-city").textContent = city || "—";
+    document.getElementById("sum-package").textContent = pkg || "—";
+    document.getElementById("sum-price").textContent = price ? price + " ر.ع" : "—";
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إتمام الطلب | فيتجوم عُمان</title>
+<meta name="robots" content="noindex">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<style>
+:root{
+--red:#c41e24;--red-deep:#9a1218;--green:#1a9348;--green-light:#2fb85a;
+--cream:#f7f6f4;--ink:#1c1412;--muted:#5e534c;--radius:16px;
+--shadow:0 16px 40px rgba(196,30,36,.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+font-family:"Cairo",sans-serif;background:var(--cream);color:var(--ink);
+min-height:100vh;padding-bottom:88px;line-height:1.6;
+}
+.top{background:var(--red);color:#fff;text-align:center;padding:.55rem;font-size:.8rem;font-weight:700}
+.header{
+display:flex;align-items:center;justify-content:space-between;
+padding:.7rem 1rem;background:#fff;border-bottom:3px solid var(--green);
+position:sticky;top:0;z-index:50;
+}
+.header img{height:40px}
+.back{font-size:.85rem;font-weight:700;color:var(--muted)}
+.main{max-width:520px;margin:0 auto;padding:1rem 1rem 2rem}
+.offers-title{text-align:center;margin-bottom:1rem}
+.offers-title h1{font-size:1.15rem;font-weight:900;color:var(--red)}
+.offers-title p{font-size:.82rem;color:var(--muted);margin-top:.25rem}
+.packages{display:grid;gap:.75rem;margin-bottom:1.25rem}
+.pkg{
+background:#fff;border:2px solid rgba(0,0,0,.08);border-radius:var(--radius);
+padding:1rem 1.1rem;cursor:pointer;transition:border-color .2s,transform .2s,box-shadow .2s;
+}
+.pkg:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.pkg.selected{border-color:var(--red);box-shadow:0 0 0 4px rgba(196,30,36,.12)}
+.pkg.popular{border-color:var(--green)}
+.pkg.popular::before{
+content:"الأكثر طلباً";display:block;text-align:center;
+font-size:.7rem;font-weight:800;color:#fff;background:var(--green);
+border-radius:8px;padding:.2rem .5rem;margin:-1.35rem auto .65rem;width:fit-content;
+}
+.pkg.best::before{
+content:"أفضل توفير";background:var(--red);
+}
+.pkg-top{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.pkg h3{font-size:1rem;font-weight:800}
+.pkg-price{font-size:1.35rem;font-weight:900;color:var(--red)}
+.pkg-price small{font-size:.75rem}
+.pkg-save{font-size:.75rem;color:var(--green);font-weight:700;margin-top:.35rem}
+.pkg-old{font-size:.8rem;color:var(--muted);text-decoration:line-through;margin-inline-start:.35rem}
+.order-box{
+background:#fff;border-radius:var(--radius);padding:1.25rem 1.15rem;
+border:2px solid var(--green);box-shadow:var(--shadow);
+}
+.order-summary{
+display:flex;align-items:center;justify-content:space-between;
+padding:.9rem 1rem;background:var(--cream);border-radius:12px;
+margin-bottom:1rem;font-weight:700;
+}
+.order-summary .price{color:var(--red);font-size:1.3rem}
+.form-group{margin-bottom:.9rem}
+.form-group label{display:block;font-size:.85rem;font-weight:700;margin-bottom:.3rem}
+.form-group input,.form-group select,.form-group textarea{
+width:100%;padding:.8rem 1rem;border-radius:12px;
+border:1.5px solid rgba(0,0,0,.12);font-family:inherit;font-size:1rem;
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+outline:none;border-color:var(--red);
+}
+.form-group textarea{min-height:76px;resize:vertical}
+.btn-submit{
+display:flex;align-items:center;justify-content:center;gap:.5rem;
+width:100%;padding:1rem;border:none;border-radius:14px;
+font-family:inherit;font-size:1.05rem;font-weight:800;cursor:pointer;
+background:var(--red);color:#fff;
+box-shadow:0 8px 0 var(--red-deep),0 12px 28px rgba(196,30,36,.28);
+}
+.btn-submit:disabled{opacity:.65}
+.order-trust{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.85rem;justify-content:center}
+.order-trust span{font-size:.7rem;font-weight:700;padding:.3rem .55rem;background:var(--cream);border-radius:8px;color:var(--green)}
+.cod-note{text-align:center;margin-top:.85rem;font-size:.76rem;color:var(--muted)}
+.cod-note i{color:var(--green)}
+.form-alert{display:none;margin-bottom:.85rem;padding:.9rem;border-radius:12px;font-weight:700;text-align:center;font-size:.88rem}
+.form-alert.show{display:block}
+.form-alert.success{background:rgba(26,147,72,.12);color:var(--green)}
+.form-alert.error{background:rgba(196,30,40,.1);color:var(--red)}
+.connect-box{
+display:none;margin-bottom:1rem;padding:1rem;border-radius:12px;
+background:#fff8e6;border:2px solid #e6b800;
+}
+.connect-box.show{display:block}
+.connect-box h3{font-size:.92rem;color:var(--red);margin-bottom:.5rem}
+.connect-box p{font-size:.78rem;color:var(--muted);margin-bottom:.6rem;line-height:1.5}
+.connect-box ol{font-size:.76rem;color:var(--muted);margin:0 1rem .75rem;padding:0}
+.connect-box a{color:var(--green);font-weight:700}
+.connect-box input{
+width:100%;padding:.7rem;border-radius:10px;border:1.5px solid rgba(0,0,0,.12);
+font-size:.8rem;direction:ltr;margin-bottom:.5rem;
+}
+.connect-box .btn-link{
+width:100%;padding:.65rem;border:none;border-radius:10px;
+background:var(--green);color:#fff;font-family:inherit;font-weight:800;cursor:pointer;
+}
+.sticky-cta{
+position:fixed;bottom:0;left:0;right:0;z-index:60;
+display:flex;align-items:center;gap:.65rem;padding:.65rem 1rem;
+background:#fff;border-top:1px solid rgba(0,0,0,.08);
+box-shadow:0 -8px 24px rgba(0,0,0,.08);
+}
+.sticky-info{flex:1;font-size:.76rem}
+.sticky-info strong{color:var(--red);font-size:1rem;display:block}
+.sticky-cta .btn-submit{width:auto;flex:1;padding:.72rem;font-size:.88rem;margin:0}
+</style>
+</head>
+<body>
+
+<div class="top">فيتجوم · دفع عند الاستلام · عُمان</div>
+
+<header class="header">
+<a href="index.html#packages" class="back"><i class="fas fa-arrow-right"></i> المنتج</a>
+<a href="index.html"><img src="assets/fitgum-logo.svg" alt="فيتجوم" width="140" height="40"></a>
+</header>
+
+<main class="main">
+<div class="offers-title">
+<h1>اختر باقتك</h1>
+<p>العروض هنا — ثم عَبّي بياناتك تحت</p>
+<p style="font-size:.78rem;color:var(--green);font-weight:700;margin-top:.4rem"><i class="fas fa-phone-volume"></i> تأكيد هاتفي · <i class="fas fa-truck"></i> توصيل 24–48 ساعة بعد التأكيد</p>
+</div>
+
+<div class="packages" id="packages">
+<div class="pkg" data-qty="1" role="button" tabindex="0">
+<div class="pkg-top">
+<h3>علبة واحدة</h3>
+<div class="pkg-price">21 <small>ر.ع</small></div>
+</div>
+<div class="pkg-save">21 ر.ع / علبة</div>
+</div>
+<div class="pkg popular selected" data-qty="2" role="button" tabindex="0">
+<div class="pkg-top">
+<h3>علبتين</h3>
+<div class="pkg-price">27 <small>ر.ع</small> <span class="pkg-old">42</span></div>
+</div>
+<div class="pkg-save">وفّر 15 ر.ع</div>
+</div>
+<div class="pkg best" data-qty="3" role="button" tabindex="0">
+<div class="pkg-top">
+<h3>3 علبات</h3>
+<div class="pkg-price">31 <small>ر.ع</small> <span class="pkg-old">63</span></div>
+</div>
+<div class="pkg-save">وفّر 32 ر.ع</div>
+</div>
+</div>
+
+<div class="order-box" id="checkout-form">
+<div class="order-summary">
+<span id="summary-label">علبتين — 27 ر.ع</span>
+<span class="price" id="summary-price">27 ر.ع</span>
+</div>
+<div id="connect-box" class="connect-box">
+<h3><i class="fas fa-link"></i> خطوة أخيرة — ربط الشيت بالمتجر</h3>
+<p>الشيت واجد ✅ — خاصك رابط <strong>Apps Script</strong> (ماشي رابط docs.google)</p>
+<ol>
+<li>افتح <a href="https://docs.google.com/spreadsheets/d/1smmQDiztg0Mmgg61t2z8I6w_P_Xnoprt0qefAi9l_nI/edit" target="_blank" rel="noopener">شيتك</a></li>
+<li>من الشيت: <strong>Extensions → Apps Script</strong> (ماشي الرابط المباشر)</li>
+<li>الصق <code>Code.gs</code> → Save → Deploy → Web app → Me + Anyone</li>
+<li>انسخ رابط <code>/exec</code> والصقو تحت</li>
+</ol>
+<input type="url" id="paste-exec" placeholder="https://script.google.com/macros/s/...../exec">
+<button type="button" class="btn-link" id="save-exec"><i class="fas fa-check"></i> حفظ وربط الآن</button>
+</div>
+<div id="form-alert" class="form-alert" role="status"></div>
+<form id="order-form" novalidate>
+<input type="hidden" id="field-package" value="2">
+<input type="hidden" id="field-price" value="27">
+<div class="form-group">
+<label for="name">الاسم الكامل *</label>
+<input type="text" id="name" name="name" required placeholder="مثال: أحمد بن سعيد" autocomplete="name">
+</div>
+<div class="form-group">
+<label for="phone">رقم الجوال (عُمان) *</label>
+<input type="tel" id="phone" name="phone" required placeholder="9XXXXXXX" autocomplete="tel">
+</div>
+<div class="form-group">
+<label for="city">المحافظة / المدينة *</label>
+<select id="city" name="city" required>
+<option value="">اختر المنطقة</option>
+<option>مسقط</option><option>مطرح</option><option>بوشر</option><option>السيب</option>
+<option>صحار</option><option>نزوى</option><option>صور</option><option>صلالة</option>
+<option>عبري</option><option>البريمي</option><option>خصب</option><option>أخرى</option>
+</select>
+</div>
+<div class="form-group">
+<label for="address">العنوان التفصيلي *</label>
+<textarea id="address" name="address" required placeholder="الحي، الشارع، رقم المنزل أو معلم قريب"></textarea>
+</div>
+<button type="submit" class="btn-submit" id="btn-submit">
+<i class="fas fa-paper-plane"></i> تأكيد الطلب
+</button>
+<div class="order-trust">
+<span><i class="fas fa-check"></i> بدون بطاقة</span>
+<span><i class="fas fa-check"></i> توصيل عُمان</span>
+<span><i class="fas fa-check"></i> تأكيد هاتفي</span>
+</div>
+<p class="cod-note"><i class="fas fa-lock"></i> الدفع عند الاستلام فقط</p>
+</form>
+</div>
+</main>
+
+<div class="sticky-cta">
+<div class="sticky-info">
+<strong id="sticky-price">27 ر.ع</strong>
+<span id="sticky-label">علبتين · عند الاستلام</span>
+</div>
+<button type="submit" form="order-form" class="btn-submit"><i class="fas fa-cart-plus"></i> تأكيد</button>
+</div>
+
+<script src="fitgum-config.js"></script>
+<script>
+function getSheetUrl() {
+  try {
+    const s = (localStorage.getItem("fitgum_sheet_url") || "").trim();
+    if (s.indexOf("script.google") > -1 && s.indexOf("/exec") > -1) return s;
+  } catch (e) {}
+  return window.FITGUM_CONFIG.SHEET_URL;
+}
+
+function isSheetLinked() {
+  const u = getSheetUrl();
+  return u && !u.includes("YOUR_GOOGLE_APPS_SCRIPT") && u.indexOf("script.google") > -1;
+}
+
+const connectBox = document.getElementById("connect-box");
+if (!isSheetLinked()) connectBox.classList.add("show");
+
+const PACKAGES = {
+  1: { label: "علبة واحدة", price: 21, summary: "علبة واحدة — 21 ر.ع" },
+  2: { label: "علبتين", price: 27, summary: "علبتين — 27 ر.ع" },
+  3: { label: "3 علبات", price: 31, summary: "3 علبات — 31 ر.ع" }
+};
+
+let qty = Math.min(3, Math.max(1, Number(new URLSearchParams(location.search).get("qty")) || 2));
+let p = PACKAGES[qty];
+
+const pkgs = document.querySelectorAll(".pkg");
+const summaryLabel = document.getElementById("summary-label");
+const summaryPrice = document.getElementById("summary-price");
+const stickyPrice = document.getElementById("sticky-price");
+const stickyLabel = document.getElementById("sticky-label");
+
+function selectPkg(n) {
+  qty = n;
+  p = PACKAGES[qty];
+  pkgs.forEach((el) => el.classList.toggle("selected", Number(el.dataset.qty) === n));
+  summaryLabel.textContent = p.summary;
+  summaryPrice.textContent = p.price + " ر.ع";
+  stickyPrice.textContent = p.price + " ر.ع";
+  stickyLabel.textContent = p.label + " · عند الاستلام";
+  document.getElementById("field-package").value = qty;
+  document.getElementById("field-price").value = p.price;
+  history.replaceState(null, "", "?qty=" + qty);
+}
+
+pkgs.forEach((el) => {
+  const n = Number(el.dataset.qty);
+  el.addEventListener("click", () => selectPkg(n));
+  el.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectPkg(n); }
+  });
+});
+
+selectPkg(qty);
+
+const alertEl = document.getElementById("form-alert");
+const formEl = document.getElementById("order-form");
+const submitBtn = document.getElementById("btn-submit");
+
+function showAlert(type, text) {
+  alertEl.className = "form-alert show " + type;
+  alertEl.textContent = text;
+}
+
+document.getElementById("save-exec").addEventListener("click", () => {
+  const u = document.getElementById("paste-exec").value.trim();
+  if (!u || u.indexOf("script.google") === -1 || u.indexOf("/exec") === -1) {
+    showAlert("error", "الرابط خاطئ. خاصو يبدأ بـ script.google.com وينتهي بـ /exec");
+    return;
+  }
+  localStorage.setItem("fitgum_sheet_url", u);
+  connectBox.classList.remove("show");
+  showAlert("success", "تم الربط! جرّب تأكيد الطلب دابا.");
+});
+
+formEl.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const city = document.getElementById("city").value;
+  const address = document.getElementById("address").value.trim();
+  if (!name || !phone || !city || !address) {
+    showAlert("error", "يرجى تعبئة جميع الحقول.");
+    return;
+  }
+  const sheetUrl = getSheetUrl();
+  if (!isSheetLinked()) {
+    connectBox.classList.add("show");
+    connectBox.scrollIntoView({ behavior: "smooth", block: "center" });
+    showAlert("error", "الصق رابط /exec فالصندوق الأصفر فوق، ثم اضغط «حفظ وربط الآن».");
+    return;
+  }
+  submitBtn.disabled = true;
+  try {
+    const res = await fetch(sheetUrl, {
+      method: "POST",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({
+        name, phone, city, address,
+        packageLabel: p.label, packageQty: qty, price: p.price,
+        source: "fitgum-checkout"
+      })
+    });
+    const data = await res.json();
+    if (!data.ok) throw new Error();
+    const thanks = new URL("thank-you.html", location.href);
+    thanks.searchParams.set("name", name);
+    thanks.searchParams.set("phone", phone);
+    thanks.searchParams.set("city", city);
+    thanks.searchParams.set("package", p.label);
+    thanks.searchParams.set("price", String(p.price));
+    location.href = thanks.toString();
+  } catch {
+    showAlert("error", "تعذّر الإرسال. حاول مرة أخرى.");
+    submitBtn.disabled = false;
+  }
+});
+
+setTimeout(() => document.getElementById("name")?.focus(), 400);
+</script>
+</body>
+</html>

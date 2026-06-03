@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>روابط مباشرة | فيتجوم</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&display=swap" rel="stylesheet">
+<style>
+body{font-family:Cairo,sans-serif;background:#f7f6f4;padding:1.5rem;line-height:1.7;max-width:520px;margin:0 auto}
+h1{color:#c41e24;font-size:1.3rem}
+a.btn{
+display:block;margin:.75rem 0;padding:1rem 1.1rem;background:#1a9348;color:#fff;
+text-decoration:none;border-radius:12px;font-weight:800;text-align:center;
+box-shadow:0 6px 0 #0f6b32;
+}
+a.btn.red{background:#c41e24;box-shadow:0 6px 0 #9a1218}
+a.btn.outline{background:#fff;color:#c41e24;border:2px solid #c41e24;box-shadow:none}
+p{font-size:.9rem;color:#5e534c}
+code{background:#eee;padding:.15rem .4rem;border-radius:4px;font-size:.8rem;direction:ltr}
+.warn{background:#fff8e6;border:2px solid #e6b800;padding:1rem;border-radius:12px;margin:1rem 0;font-size:.85rem}
+</style>
+</head>
+<body>
+<h1>روابط مباشرة — فيتجوم</h1>
+
+<p><strong>① شيت الطلبات</strong> (واجد عندك)</p>
+<a class="btn" href="https://docs.google.com/spreadsheets/d/1smmQDiztg0Mmgg61t2z8I6w_P_Xnoprt0qefAi9l_nI/edit" target="_blank" rel="noopener">افتح Google Sheet</a>
+
+<p><strong>② Apps Script</strong> — جرّب بالترتيب:</p>
+
+<p><strong>الطريقة A (الأفضل):</strong> من الشيت → Extensions → Apps Script</p>
+<a class="btn" href="https://docs.google.com/spreadsheets/d/1smmQDiztg0Mmgg61t2z8I6w_P_Xnoprt0qefAi9l_nI/edit" target="_blank" rel="noopener">① افتح الشيت → Extensions → Apps Script</a>
+
+<p><strong>الطريقة B:</strong> مشروع جديد (إذا الرابط الأحمر فشل)</p>
+<a class="btn red" href="https://script.google.com/home/projects/create" target="_blank" rel="noopener">② مشروع Apps Script جديد</a>
+<p>الصق <code>Code.gs</code> (معرف الشيت داخل الكود) → Save → Deploy</p>
+
+<div class="warn" style="border-color:#c41e24;background:#fff0f0">
+إلا طلع خطأ أحمر «Échec de la création» — استعمل <strong>الطريقة A</strong> من داخل الشيت، ماشي الرابط المباشر.
+</div>
+
+<p><strong>③ ربط المتجر</strong> (منين تجيب رابط <code>/exec</code>)</p>
+<a class="btn outline" href="checkout.html">صفحة الطلب — الصق الرابط هنا</a>
+
+<div class="warn">
+<strong>مهم:</strong> الرابط اللي خاص المتجر يبدأ بـ<br>
+<code>https://script.google.com/macros/s/...</code><br>
+ماشي رابط <code>docs.google.com/spreadsheets</code>
+</div>
+
+<a href="index.html" style="color:#5e534c;font-weight:700">← رجوع للموقع</a>
+</body>
+</html>
