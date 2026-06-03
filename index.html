@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فيتجوم | علكة خل التفاح — عُمان</title>
+<meta name="description" content="فيتجوم علكة خل التفاح — 60 علكة عضوية. توصيل عُمان والدفع عند الاستلام. اطلب الآن.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="preload" as="image" href="assets/fitgum-product.png" fetchpriority="high">
+<style>
+:root{
+--red:#c41e24;
+--red-deep:#9a1218;
+--green:#1a9348;
+--green-light:#2fb85a;
+--green-dark:#0f6b32;
+--label-white:#ffffff;
+--cream:#f7f6f4;
+--ink:#1c1412;
+--muted:#5e534c;
+--gold:#f0b429;
+--radius:18px;
+--shadow:0 20px 48px rgba(196,30,36,.16);
+--ribbon-shadow:0 6px 0 rgba(15,107,50,.35);
+--ease:cubic-bezier(.22,1,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{
+font-family:"Cairo",sans-serif;
+background:var(--cream);
+color:var(--ink);
+line-height:1.65;
+font-size:clamp(.92rem,2.2vw,1.02rem);
+-webkit-font-smoothing:antialiased;
+overflow-x:hidden;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,100%);margin-inline:auto;padding-inline:clamp(1rem,4vw,1.6rem)}
+
+/* Urgency bar — brand red */
+.urgency{
+background:linear-gradient(90deg,var(--red-deep),var(--red) 50%,var(--red-deep));
+color:#fff;text-align:center;padding:.5rem 1rem;
+font-size:.8rem;font-weight:600;
+}
+.urgency-inner{
+display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.5rem 1rem;
+max-width:1120px;margin-inline:auto;
+}
+.urgency strong{color:#ffe566}
+.urgency-timer{
+display:inline-flex;align-items:center;gap:.35rem;
+background:rgba(0,0,0,.2);padding:.2rem .65rem;border-radius:999px;
+font-variant-numeric:tabular-nums;font-weight:800;
+}
+
+/* Header — label style */
+header{
+position:sticky;top:0;z-index:100;
+background:rgba(255,255,255,.94);
+backdrop-filter:blur(14px);
+border-bottom:3px solid var(--green);
+box-shadow:0 4px 24px rgba(0,0,0,.06);
+}
+.hdr-inner{
+display:flex;align-items:center;justify-content:space-between;
+gap:1rem;padding:.7rem clamp(1rem,4vw,1.6rem);
+max-width:1120px;margin-inline:auto;
+}
+.logo img{height:clamp(36px,8vw,44px);width:auto}
+.hdr-nav{display:none;gap:1rem;font-size:.85rem;font-weight:700}
+.hdr-nav a{color:var(--muted);transition:color .2s}
+.hdr-nav a:hover{color:var(--red)}
+@media(min-width:768px){.hdr-nav{display:flex}}
+.hdr-cta{
+display:inline-flex;align-items:center;gap:.45rem;
+padding:.7rem 1.25rem;border-radius:10px;
+background:var(--red);color:#fff;font-weight:800;font-size:.88rem;
+box-shadow:0 8px 0 var(--red-deep),0 12px 28px rgba(196,30,36,.35);
+transition:transform .2s var(--ease),box-shadow .2s;
+}
+.hdr-cta:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--red-deep),0 14px 32px rgba(196,30,36,.4)}
+.hdr-cta:active{transform:translateY(2px);box-shadow:0 2px 0 var(--red-deep)}
+
+/* Brand typography — like the label */
+.brand-ribbon{
+display:inline-block;background:linear-gradient(135deg,var(--green),var(--green-light));
+color:#fff;font-weight:900;letter-spacing:.14em;
+padding:.4rem 1rem;border-radius:8px 8px 4px 4px;
+font-size:clamp(.75rem,2vw,.85rem);
+box-shadow:var(--ribbon-shadow);
+}
+.brand-xl{
+display:block;font-size:clamp(2rem,7vw,3rem);font-weight:900;
+line-height:1.15;color:var(--red);margin:.4rem 0 .15rem;
+}
+.brand-sub{
+display:block;font-size:clamp(1rem,3vw,1.25rem);font-weight:800;
+color:var(--green);
+}
+.brand-xs{
+display:block;font-size:.8rem;font-weight:700;
+color:var(--red);margin-bottom:.35rem;
+}
+
+/* شريط المتجر — brand store */
+.brand-store{
+background:var(--red);color:#fff;text-align:center;
+padding:.7rem 1rem;font-weight:800;font-size:clamp(1rem,3vw,1.2rem);
+letter-spacing:.02em;box-shadow:0 4px 0 var(--red-deep);
+}
+.brand-store span{color:#ffe566}
+
+/* CRV — منتج + فوائد (بحال الإعلان) */
+.crv-sec{background:#fff;padding:clamp(2rem,5vw,3rem) 0}
+.crv-grid{
+display:grid;gap:2rem;align-items:center;
+}
+@media(min-width:900px){.crv-grid{grid-template-columns:1fr 1.1fr}}
+.crv-product{
+text-align:center;background:var(--cream);border-radius:var(--radius);
+padding:1.5rem;border:3px solid var(--red);
+box-shadow:var(--shadow);
+}
+.crv-product img{max-height:min(50vh,360px);margin-inline:auto}
+.crv-brand-name{
+font-size:clamp(2rem,6vw,2.75rem);font-weight:900;color:var(--red);
+margin-bottom:1rem;line-height:1.2;
+}
+.benefit-checklist{list-style:none;display:grid;gap:.85rem}
+.benefit-checklist li{
+display:flex;align-items:flex-start;gap:.75rem;
+font-size:clamp(.92rem,2.2vw,1.05rem);font-weight:700;line-height:1.5;
+}
+.check-icon{
+flex-shrink:0;width:28px;height:28px;border-radius:50%;
+background:var(--red);color:#fff;
+display:grid;place-items:center;font-size:.75rem;
+box-shadow:0 4px 0 var(--red-deep);
+}
+.crv-arrow{
+text-align:center;padding:1rem 0;color:var(--red);font-size:2rem;
+animation:bob 2s ease-in-out infinite;
+}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* رحلة الطلب — تأكيد + توصيل */
+.journey-sec{
+background:linear-gradient(180deg,#fff 0%,var(--cream) 100%);
+padding:clamp(2rem,5vw,3.5rem) 0;
+}
+.journey-product{
+text-align:center;margin-bottom:1.75rem;
+}
+.journey-product img{
+max-height:min(42vh,280px);margin-inline:auto;
+filter:drop-shadow(0 20px 40px rgba(196,30,36,.2));
+}
+.journey-flow{
+display:grid;gap:1rem;max-width:640px;margin-inline:auto;
+}
+.journey-step{
+display:flex;gap:1rem;align-items:flex-start;
+background:#fff;border:2px solid rgba(0,0,0,.06);
+border-radius:var(--radius);padding:1.1rem 1.15rem;
+box-shadow:0 8px 24px rgba(0,0,0,.04);
+}
+.journey-step.highlight{
+border-color:var(--green);
+background:linear-gradient(135deg,rgba(26,147,72,.06),#fff);
+}
+.journey-step strong{display:block;font-size:1rem;color:var(--ink);margin-bottom:.25rem}
+.journey-step p{font-size:.88rem;color:var(--muted);font-weight:600;line-height:1.55}
+.journey-step .warn{color:var(--red);font-weight:800}
+.journey-step .delivery-time{
+color:var(--green);font-weight:900;font-size:1.05rem;
+}
+.j-icon{
+flex-shrink:0;width:48px;height:48px;border-radius:14px;
+background:var(--red);color:#fff;
+display:grid;place-items:center;font-size:1.15rem;
+box-shadow:0 6px 0 var(--red-deep);
+}
+.j-icon.green{background:var(--green);box-shadow:0 6px 0 var(--green-dark)}
+.journey-cta{text-align:center;margin-top:1.75rem}
+.sec-label{
+display:inline-block;background:var(--green);color:#fff;
+font-size:.72rem;font-weight:800;padding:.25rem .65rem;border-radius:6px;
+margin-bottom:.5rem;
+}
+.badge-60{
+display:inline-flex;flex-direction:column;align-items:center;justify-content:center;
+background:var(--red);color:#fff;border-radius:12px;
+padding:.55rem .75rem;min-width:64px;font-weight:800;line-height:1;
+box-shadow:0 8px 20px rgba(196,30,36,.35);
+}
+.badge-60 .n{font-size:1.5rem}
+.badge-60 .t{font-size:.58rem;font-weight:600;opacity:.95;text-align:center}
+
+/* Social proof bar */
+.proof-bar{
+background:var(--label-white);border-block:2px solid var(--green);
+padding:.85rem 0;
+}
+.proof-grid{
+display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;text-align:center;
+}
+@media(min-width:640px){.proof-grid{grid-template-columns:repeat(4,1fr)}}
+.proof-item strong{display:block;font-size:1.1rem;color:var(--red);font-weight:900}
+.proof-item span{font-size:.72rem;color:var(--muted);font-weight:600}
+.proof-stars{color:var(--gold);font-size:.85rem}
+
+/* Quick offer strip */
+.offer-strip{
+background:linear-gradient(135deg,var(--green-dark),var(--green));
+color:#fff;padding:1rem 0;
+}
+.offer-inner{
+display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem;
+}
+.offer-price{font-size:clamp(1.5rem,4vw,2rem);font-weight:900}
+.offer-price small{font-size:.55em;opacity:.85;font-weight:600}
+.offer-copy{font-size:.88rem;opacity:.92;max-width:36ch}
+.offer-strip .btn{background:#fff;color:var(--green-dark);font-weight:800;box-shadow:0 8px 24px rgba(0,0,0,.15)}
+
+/* Compare table — conversion */
+.compare-sec{background:#fff}
+.compare-table{
+width:100%;border-collapse:separate;border-spacing:0;
+border-radius:var(--radius);overflow:hidden;
+border:2px solid rgba(26,147,72,.2);background:#fff;
+}
+.compare-table th,.compare-table td{padding:.85rem 1rem;text-align:center;font-size:.88rem}
+.compare-table thead th{background:var(--green);color:#fff;font-weight:800}
+.compare-table tbody tr:nth-child(even){background:rgba(26,147,72,.04)}
+.compare-table .win{color:var(--green);font-weight:800}
+.compare-table .lose{color:var(--muted);text-decoration:line-through;opacity:.7}
+.compare-table td:first-child{text-align:right;font-weight:700}
+
+/* Guarantee */
+.guarantee-box{
+display:grid;gap:1rem;margin-top:1.5rem;
+}
+@media(min-width:600px){.guarantee-box{grid-template-columns:repeat(3,1fr)}}
+.guarantee-item{
+text-align:center;padding:1rem;background:var(--cream);
+border-radius:14px;border:1px solid rgba(26,147,72,.15);
+}
+.guarantee-item i{font-size:1.5rem;color:var(--green);margin-bottom:.5rem}
+.guarantee-item strong{display:block;font-size:.88rem;margin-bottom:.2rem}
+.guarantee-item span{font-size:.75rem;color:var(--muted)}
+
+/* Hero */
+.hero{
+padding:clamp(1.5rem,5vw,2.5rem) 0 clamp(2rem,6vw,3rem);
+background:
+linear-gradient(180deg,#fff 0%,var(--cream) 100%);
+position:relative;
+}
+.hero::before{
+content:"";position:absolute;inset:0;
+background:radial-gradient(ellipse 60% 50% at 85% 15%,rgba(26,147,72,.08),transparent 60%),
+radial-gradient(ellipse 50% 40% at 5% 90%,rgba(196,30,36,.06),transparent 55%);
+pointer-events:none;
+}
+.hero .wrap{position:relative;z-index:1}
+.hero-price-tag{
+display:inline-flex;align-items:baseline;gap:.35rem;
+margin:1rem 0 1.25rem;padding:.65rem 1rem;
+background:#fff;border:2px solid var(--red);border-radius:12px;
+box-shadow:var(--shadow);
+}
+.hero-price-tag .from{font-size:.78rem;color:var(--muted);font-weight:600}
+.hero-price-tag .amt{font-size:1.75rem;font-weight:900;color:var(--red);line-height:1}
+.hero-price-tag .cod{font-size:.72rem;color:var(--green);font-weight:700}
+.hero-social{
+display:flex;align-items:center;gap:.65rem;margin-top:1rem;font-size:.82rem;color:var(--muted);
+}
+.hero-social .avatars{display:flex}
+.hero-social .av{
+width:28px;height:28px;border-radius:50%;border:2px solid #fff;
+margin-inline-start:-8px;background:var(--green);color:#fff;
+display:grid;place-items:center;font-size:.65rem;font-weight:800;
+}
+.hero-social .av:first-child{margin-inline-start:0}
+.hero-grid{
+display:grid;gap:2rem;align-items:center;
+}
+@media(min-width:900px){
+.hero-grid{grid-template-columns:1fr 1.05fr;gap:3rem}
+}
+.hero-top{display:flex;flex-wrap:wrap;align-items:flex-start;gap:1rem;margin-bottom:.75rem}
+.hero-sub{color:var(--muted);font-size:clamp(.92rem,2.2vw,1.02rem);max-width:38ch;margin-bottom:0}
+.hero-label-bar{
+display:inline-block;margin-top:1rem;padding:.45rem .85rem;
+background:var(--green);color:#fff;font-size:.7rem;font-weight:700;
+letter-spacing:.06em;border-radius:6px;
+}
+.hero-badges{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1.5rem}
+.badge-pill{
+display:inline-flex;align-items:center;gap:.4rem;
+padding:.45rem .8rem;border-radius:12px;
+background:#fff;border:1px solid rgba(0,0,0,.06);
+font-size:.78rem;font-weight:600;
+box-shadow:0 4px 14px rgba(0,0,0,.04);
+}
+.badge-pill i{color:var(--green)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.75rem}
+.btn{
+display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+padding:.85rem 1.5rem;border-radius:14px;font-weight:700;
+font-size:.95rem;border:none;cursor:pointer;
+transition:transform .25s var(--ease),box-shadow .25s;
+}
+.btn-primary{
+background:var(--red);color:#fff;
+box-shadow:0 8px 0 var(--red-deep),0 14px 32px rgba(196,30,36,.3);
+font-weight:800;letter-spacing:.03em;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 0 var(--red-deep),0 16px 36px rgba(196,30,36,.35)}
+.btn-primary:active{transform:translateY(3px);box-shadow:0 2px 0 var(--red-deep)}
+.btn-lg{padding:1rem 1.75rem;font-size:1.05rem}
+.btn-ghost{
+background:#fff;color:var(--red);border:2px solid rgba(198,40,40,.25);
+}
+.hero-visual{position:relative;display:grid;place-items:center;min-height:320px}
+.hero-glow{
+position:absolute;width:min(90%,340px);aspect-ratio:1;border-radius:50%;
+background:radial-gradient(circle,rgba(198,40,40,.15),transparent 70%);
+animation:pulse 4s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{transform:scale(1);opacity:.8}50%{transform:scale(1.06);opacity:1}}
+.hero-img{
+position:relative;z-index:2;max-height:min(72vh,480px);
+filter:drop-shadow(0 28px 50px rgba(198,40,40,.22));
+}
+.hero-orbit{
+position:absolute;z-index:4;border-radius:18px;overflow:hidden;
+box-shadow:0 14px 36px rgba(0,0,0,.18);border:3px solid #fff;
+animation:float 5s ease-in-out infinite;
+}
+.hero-orbit.gummies{width:clamp(88px,22vw,120px);top:4%;right:-4%;animation-delay:.6s}
+.hero-orbit.unbox{width:clamp(76px,18vw,100px);bottom:6%;left:-2%;animation-delay:1.8s}
+.hero-orbit img{width:100%;height:100%;object-fit:cover;aspect-ratio:1}
+.float-card{
+position:absolute;z-index:3;background:#fff;border-radius:16px;
+padding:.75rem 1rem;box-shadow:var(--shadow);
+font-size:.78rem;font-weight:700;
+animation:float 5s ease-in-out infinite;
+}
+.float-card.a{top:8%;left:0;color:var(--green);border:2px solid rgba(26,147,72,.2)}
+.float-card.b{bottom:12%;right:0;color:var(--red);animation-delay:1.2s;border:2px solid rgba(196,30,36,.15)}
+.float-card.b strong{color:var(--red)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* Image marquee */
+.visual-marquee{
+padding:1.25rem 0;background:#fff;overflow:hidden;
+border-block:1px solid rgba(0,0,0,.04);
+direction:ltr;
+}
+@media(max-width:640px){
+.hero-orbit{display:none}
+}
+.marquee-track{
+display:flex;gap:1rem;width:max-content;
+animation:marquee 28s linear infinite;
+}
+.marquee-track:hover{animation-play-state:paused}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.marquee-item{
+flex:0 0 clamp(200px,28vw,280px);border-radius:18px;overflow:hidden;
+aspect-ratio:4/3;box-shadow:0 10px 28px rgba(0,0,0,.1);
+}
+.marquee-item img{width:100%;height:100%;object-fit:cover;transition:transform .5s var(--ease)}
+.marquee-item:hover img{transform:scale(1.06)}
+
+/* Bento gallery */
+.gallery-sec{background:linear-gradient(180deg,var(--cream) 0%,#fff 100%)}
+.bento{
+display:grid;gap:.85rem;
+grid-template-columns:repeat(2,1fr);
+grid-template-rows:auto;
+}
+@media(min-width:768px){
+.bento{
+grid-template-columns:1.2fr 1fr 1fr;
+grid-template-rows:200px 200px;
+}
+}
+.bento-card{
+position:relative;border-radius:calc(var(--radius) + 2px);overflow:hidden;
+min-height:180px;box-shadow:var(--shadow);
+}
+.bento-card img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+.bento-card:hover img{transform:scale(1.05)}
+.bento-card::after{
+content:"";position:absolute;inset:0;
+background:linear-gradient(0deg,rgba(0,0,0,.55) 0%,transparent 55%);
+pointer-events:none;
+}
+.bento-cap{
+position:absolute;bottom:0;right:0;left:0;z-index:2;
+padding:1rem 1.1rem;color:#fff;
+}
+.bento-cap strong{display:block;font-size:1rem;margin-bottom:.15rem}
+.bento-cap span{font-size:.78rem;opacity:.9}
+.bento-main{grid-column:1;grid-row:1/3}
+@media(max-width:767px){.bento-main{grid-column:1/-1;grid-row:auto;min-height:220px}}
+.bento-wide{grid-column:1/-1;min-height:200px}
+@media(min-width:768px){.bento-wide{grid-column:2/4}}
+
+/* Lifestyle split */
+.lifestyle-split .split-grid{
+display:grid;gap:2rem;align-items:center;
+}
+@media(min-width:900px){.lifestyle-split .split-grid{grid-template-columns:1.05fr 1fr}}
+.split-visual{
+position:relative;border-radius:calc(var(--radius) + 6px);overflow:hidden;
+box-shadow:0 24px 60px rgba(198,40,40,.18);
+}
+.split-visual img{width:100%;min-height:280px;object-fit:cover}
+.split-badge{
+position:absolute;top:1rem;right:1rem;z-index:2;
+background:rgba(255,255,255,.95);backdrop-filter:blur(8px);
+padding:.5rem .9rem;border-radius:999px;font-size:.78rem;font-weight:700;
+color:var(--green);box-shadow:0 8px 20px rgba(0,0,0,.1);
+}
+.split-copy h2{font-size:clamp(1.4rem,4vw,1.9rem);font-weight:800;margin-bottom:.75rem}
+.split-copy p{color:var(--muted);margin-bottom:1rem;font-size:.95rem}
+.split-points{display:grid;gap:.65rem;margin:1.25rem 0}
+.split-point{
+display:flex;align-items:center;gap:.65rem;padding:.75rem 1rem;
+background:#fff;border-radius:14px;border:1px solid rgba(0,0,0,.05);
+font-weight:600;font-size:.88rem;
+}
+.split-point i{color:var(--red);font-size:1.1rem}
+
+/* Splash banner */
+.splash-banner{
+position:relative;border-radius:calc(var(--radius) + 8px);overflow:hidden;
+min-height:clamp(220px,40vw,320px);display:flex;align-items:center;
+}
+.splash-banner img{
+position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+}
+.splash-overlay{
+position:relative;z-index:2;width:100%;
+padding:clamp(1.5rem,5vw,2.5rem);
+background:linear-gradient(90deg,rgba(142,0,0,.88) 0%,rgba(198,40,40,.55) 45%,transparent 100%);
+color:#fff;
+}
+.splash-overlay h2{font-size:clamp(1.35rem,4vw,2rem);font-weight:800;margin-bottom:.5rem;max-width:20ch}
+.splash-overlay p{font-size:.92rem;opacity:.92;margin-bottom:1rem;max-width:32ch}
+.splash-overlay .btn{background:#fff;color:var(--red);box-shadow:0 10px 30px rgba(0,0,0,.2)}
+
+/* Specs with image */
+.specs-img-wrap{
+border-radius:16px;overflow:hidden;aspect-ratio:1;
+box-shadow:0 16px 40px rgba(0,0,0,.2);
+}
+.specs-img-wrap img{width:100%;height:100%;object-fit:cover}
+
+/* Pricing — صورة المنتج الوحيدة */
+.pricing-product{
+text-align:center;margin-bottom:1.5rem;
+background:#fff;border:3px solid var(--green);border-radius:var(--radius);
+padding:1.25rem;box-shadow:var(--shadow);
+}
+.pricing-product img{max-height:200px;margin-inline:auto}
+.pricing-product p{margin-top:.75rem;font-weight:800;color:var(--green);font-size:.9rem}
+
+/* Unboxing row */
+.unbox-row .unbox-grid{
+display:grid;gap:1rem;
+}
+@media(min-width:800px){.unbox-row .unbox-grid{grid-template-columns:repeat(3,1fr)}}
+.unbox-card{
+background:#fff;border-radius:var(--radius);overflow:hidden;
+border:1px solid rgba(0,0,0,.05);transition:transform .3s var(--ease);
+}
+.unbox-card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+.unbox-card img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.unbox-card figcaption{padding:1rem 1.1rem;font-weight:700;font-size:.9rem}
+.unbox-card figcaption span{display:block;font-weight:400;color:var(--muted);font-size:.8rem;margin-top:.25rem}
+
+/* Review with photo */
+.review.has-photo{padding:0;overflow:hidden}
+.review-photo{height:120px;overflow:hidden}
+.review-photo img{width:100%;height:100%;object-fit:cover}
+.review-body{padding:1.15rem 1.25rem}
+
+/* Pre-order banner */
+.preorder-banner{
+margin-top:2rem;
+}
+
+/* Trust strip */
+.trust-strip{
+padding:1.25rem 0;
+background:#fff;border-block:1px solid rgba(0,0,0,.05);
+}
+.trust-grid{
+display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;
+}
+@media(min-width:640px){.trust-grid{grid-template-columns:repeat(4,1fr)}}
+.trust-item{text-align:center;padding:.5rem}
+.trust-item i{
+font-size:1.5rem;color:var(--red);margin-bottom:.4rem;
+display:block;
+}
+.trust-item strong{display:block;font-size:.88rem}
+.trust-item span{font-size:.75rem;color:var(--muted)}
+
+/* Section common */
+section{padding:clamp(2.5rem,6vw,4rem) 0}
+.sec-head{text-align:center;max-width:52ch;margin:0 auto 2rem}
+.sec-head h2{font-size:clamp(1.5rem,4vw,2rem);font-weight:800;margin-bottom:.5rem}
+.sec-head p{color:var(--muted);font-size:.95rem}
+
+/* Benefits */
+.benefits-grid{
+display:grid;gap:1rem;
+}
+@media(min-width:700px){.benefits-grid{grid-template-columns:repeat(3,1fr)}}
+.benefit-card{
+background:#fff;border-radius:var(--radius);padding:1.35rem;
+border:1px solid rgba(0,0,0,.05);
+transition:transform .3s var(--ease),box-shadow .3s;
+}
+.benefit-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.benefit-icon{
+width:52px;height:52px;border-radius:14px;
+background:linear-gradient(135deg,rgba(26,147,72,.15),rgba(47,184,90,.08));
+color:var(--green);display:grid;place-items:center;font-size:1.35rem;
+margin-bottom:.85rem;
+}
+.benefit-card{border-top:3px solid var(--green)}
+.benefit-card h3{font-size:1rem;font-weight:700;margin-bottom:.35rem}
+.benefit-card p{font-size:.86rem;color:var(--muted)}
+
+/* Product specs */
+.specs{
+background:linear-gradient(135deg,var(--green),#388e3c);
+color:#fff;border-radius:var(--radius);
+padding:clamp(1.5rem,4vw,2.5rem);
+display:grid;gap:1.5rem;
+}
+@media(min-width:768px){.specs{grid-template-columns:1.2fr 1fr;align-items:center}}
+.specs h2{font-size:clamp(1.35rem,3.5vw,1.75rem);margin-bottom:.75rem}
+.specs ul{list-style:none;display:grid;gap:.55rem}
+.specs li{display:flex;align-items:flex-start;gap:.5rem;font-size:.92rem}
+.specs li i{margin-top:.2rem;color:#ffeb3b}
+
+/* Pricing + form zone */
+.offers-zone{background:#fff}
+.pricing{background:#fff;padding-bottom:0}
+.order-sec.offers-form{padding-top:0;background:linear-gradient(180deg,#fff 0%,rgba(198,40,40,.05) 100%)}
+.order-sec.offers-form .sec-head{display:none}
+.packages{
+display:grid;gap:1rem;
+}
+@media(min-width:700px){.packages{grid-template-columns:repeat(3,1fr);align-items:stretch}}
+.pkg{
+position:relative;background:var(--cream);border-radius:var(--radius);
+padding:1.5rem 1.25rem;border:2px solid transparent;
+cursor:pointer;transition:border-color .25s,transform .25s,box-shadow .25s;
+-webkit-tap-highlight-color:transparent;
+}
+.pkg:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.pkg:active{transform:translateY(-1px) scale(.99)}
+.pkg.selected{
+border-color:var(--red);
+box-shadow:0 0 0 4px rgba(198,40,40,.12);
+background:#fff;
+}
+.pkg{
+background:#fff;border:2px solid rgba(0,0,0,.06);
+}
+.pkg.popular{border-color:var(--green);box-shadow:0 12px 36px rgba(26,147,72,.15)}
+.pkg.popular::before{
+content:"الأكثر طلباً";
+position:absolute;top:-12px;left:50%;transform:translateX(-50%);
+background:var(--green);color:#fff;font-size:.72rem;font-weight:800;
+padding:.3rem .85rem;border-radius:8px;white-space:nowrap;
+box-shadow:var(--ribbon-shadow);
+}
+.pkg.best{border-color:var(--red)}
+.pkg.best::before{
+content:"وفّر 32 ر.ع";
+background:var(--red);color:#fff;
+box-shadow:0 6px 0 var(--red-deep);
+}
+.pkg-scarcity{
+font-size:.72rem;color:var(--red);font-weight:700;margin-top:.4rem;
+display:flex;align-items:center;justify-content:center;gap:.3rem;
+}
+.pkg-cta{
+display:flex;align-items:center;justify-content:center;gap:.4rem;
+width:100%;margin-top:1rem;padding:.75rem;
+border-radius:10px;background:var(--green);color:#fff;
+font-size:.88rem;font-weight:800;
+transition:background .2s;
+pointer-events:none;
+}
+.pkg.selected .pkg-cta{background:var(--red)}
+.pkg-thumb{
+width:100%;max-height:100px;object-fit:contain;margin-bottom:.75rem;
+border-radius:12px;background:var(--cream);padding:.5rem;
+}
+.pkg-old{
+font-size:.85rem;color:var(--muted);text-decoration:line-through;
+margin-inline-start:.35rem;font-weight:600;
+}
+.pkg-qty{font-size:.85rem;color:var(--muted);margin-bottom:.25rem}
+.pkg h3{font-size:1.15rem;font-weight:800;margin-bottom:.5rem}
+.pkg-price{font-size:2rem;font-weight:800;color:var(--red);line-height:1}
+.pkg-price small{font-size:.9rem;font-weight:600}
+.pkg-save{
+margin-top:.5rem;font-size:.78rem;color:var(--green);font-weight:700;
+min-height:1.2em;
+}
+.pkg-per{font-size:.8rem;color:var(--muted);margin-top:.35rem}
+.pkg-check{
+margin-top:1rem;display:flex;align-items:center;gap:.4rem;
+font-size:.82rem;font-weight:600;color:var(--muted);
+}
+.pkg.selected .pkg-check{color:var(--red)}
+.pkg-check i{font-size:1rem}
+
+/* Steps */
+.steps{display:grid;gap:1.25rem}
+@media(min-width:700px){.steps{grid-template-columns:repeat(3,1fr)}}
+.step{
+text-align:center;padding:1.5rem 1rem;
+background:#fff;border-radius:var(--radius);
+border:1px solid rgba(0,0,0,.05);
+}
+.step-num{
+width:44px;height:44px;margin:0 auto .85rem;
+border-radius:50%;background:var(--red);color:#fff;
+display:grid;place-items:center;font-weight:800;font-size:1.1rem;
+}
+.step h3{font-size:1rem;margin-bottom:.35rem}
+.step p{font-size:.86rem;color:var(--muted)}
+
+/* Reviews */
+.reviews-grid{display:grid;gap:1rem}
+@media(min-width:700px){.reviews-grid{grid-template-columns:repeat(3,1fr)}}
+.review{
+background:#fff;border-radius:var(--radius);padding:1.25rem;
+border:1px solid rgba(0,0,0,.05);
+}
+.review-stars{color:var(--gold);font-size:.9rem;margin-bottom:.6rem}
+.review p{font-size:.88rem;color:var(--muted);margin-bottom:.75rem}
+.review-author{font-weight:700;font-size:.85rem}
+.review-author span{font-weight:400;color:var(--muted);font-size:.78rem}
+
+/* FAQ */
+.faq-list{max-width:680px;margin:0 auto;display:grid;gap:.65rem}
+.faq-item{
+background:#fff;border-radius:14px;border:1px solid rgba(0,0,0,.06);
+overflow:hidden;
+}
+.faq-q{
+width:100%;text-align:right;padding:1rem 1.15rem;
+background:none;border:none;font-family:inherit;
+font-size:.95rem;font-weight:700;cursor:pointer;
+display:flex;align-items:center;justify-content:space-between;gap:.75rem;
+color:var(--ink);
+}
+.faq-q i{transition:transform .3s;color:var(--red);flex-shrink:0}
+.faq-item.open .faq-q i{transform:rotate(180deg)}
+.faq-a{
+max-height:0;overflow:hidden;transition:max-height .35s var(--ease);
+}
+.faq-a-inner{padding:0 1.15rem 1rem;font-size:.88rem;color:var(--muted)}
+.faq-item.open .faq-a{max-height:200px}
+
+/* Order form */
+.order-sec{
+background:linear-gradient(180deg,#fff 0%,rgba(198,40,40,.04) 100%);
+}
+.checkout-head-mobile{display:none}
+.order-layout{
+display:grid;gap:1.25rem;align-items:start;
+}
+@media(max-width:899px){
+.order-sec .sec-head{display:none}
+.checkout-head-mobile{
+display:block;text-align:center;margin-bottom:1rem;
+}
+.checkout-head-mobile h2{font-size:1.2rem;font-weight:900;color:var(--red)}
+.checkout-head-mobile p{font-size:.82rem;color:var(--muted);margin-top:.25rem}
+.order-side{display:none}
+}
+@media(min-width:900px){
+.order-layout{grid-template-columns:1fr 1.15fr}
+.order-side{display:block}
+.order-box{order:2}
+.order-side{order:1}
+}
+.order-side{
+background:#fff;border-radius:var(--radius);padding:1.25rem;
+border:2px solid var(--green);box-shadow:var(--shadow);
+}
+.order-side img{border-radius:12px;margin-bottom:1rem;max-height:200px;object-fit:contain;margin-inline:auto}
+.order-side .brand-ribbon{margin-bottom:.75rem}
+#checkout-form{scroll-margin-top:88px;scroll-margin-bottom:100px}
+.order-box{
+background:#fff;border-radius:calc(var(--radius) + 4px);
+padding:clamp(1.5rem,4vw,2rem);
+box-shadow:var(--shadow);
+border:2px solid var(--red);
+transition:border-color .3s,box-shadow .3s;
+}
+.order-box.checkout-flash{
+animation:checkoutPulse 1.2s ease;
+border-color:var(--green);
+box-shadow:0 0 0 6px rgba(26,147,72,.2),var(--shadow);
+}
+@keyframes checkoutPulse{
+0%,100%{transform:scale(1)}
+50%{transform:scale(1.01)}
+}
+.order-trust{
+display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;
+}
+.order-trust span{
+font-size:.72rem;font-weight:700;padding:.35rem .65rem;
+background:var(--cream);border-radius:8px;color:var(--green-dark);
+}
+.float-order{
+display:none;position:fixed;bottom:1.25rem;left:1.25rem;z-index:98;
+}
+@media(min-width:769px){
+.float-order{display:block}
+}
+.float-order .btn{border-radius:999px;padding:1rem 1.5rem}
+.order-summary{
+display:flex;align-items:center;justify-content:space-between;
+padding:1rem 1.15rem;background:var(--cream);border-radius:14px;
+margin-bottom:1.25rem;font-weight:700;
+}
+.order-summary .price{color:var(--red);font-size:1.35rem}
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;font-size:.85rem;font-weight:700;margin-bottom:.35rem}
+.form-group input,.form-group select,.form-group textarea{
+width:100%;padding:.8rem 1rem;border-radius:12px;
+border:1.5px solid rgba(0,0,0,.1);
+font-family:inherit;font-size:.95rem;
+transition:border-color .2s;
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+outline:none;border-color:var(--red);
+}
+.form-group textarea{min-height:72px;resize:vertical}
+.submit-btn{
+width:100%;padding:1rem;font-size:1.05rem;margin-top:.5rem;
+}
+.cod-note{
+text-align:center;margin-top:1rem;font-size:.8rem;color:var(--muted);
+display:flex;align-items:center;justify-content:center;gap:.4rem;
+}
+.cod-note i{color:var(--green)}
+.form-alert{
+display:none;margin-bottom:1rem;padding:1rem 1.1rem;border-radius:14px;
+font-size:.9rem;font-weight:600;text-align:center;
+}
+.form-alert.show{display:block}
+.form-alert.success{background:rgba(46,125,50,.12);color:var(--green);border:1px solid rgba(46,125,50,.25)}
+.form-alert.error{background:rgba(198,40,40,.1);color:var(--red);border:1px solid rgba(198,40,40,.2)}
+.submit-btn:disabled{opacity:.65;cursor:not-allowed;transform:none!important}
+
+/* Sticky mobile CTA */
+.sticky-cta{
+display:none;position:fixed;bottom:0;left:0;right:0;z-index:99;
+padding:.65rem 1rem;background:#fff;
+border-top:1px solid rgba(0,0,0,.08);
+box-shadow:0 -8px 30px rgba(0,0,0,.08);
+}
+@media(max-width:768px){
+.sticky-cta{display:flex;gap:.65rem;align-items:center}
+.sticky-cta .sticky-info{flex:1;font-size:.78rem;line-height:1.35}
+.sticky-cta .sticky-info strong{color:var(--red);font-size:1rem}
+.sticky-cta .btn{flex:1;padding:.75rem;font-size:.88rem}
+body{padding-bottom:72px}
+}
+
+footer{
+padding:2rem 0;text-align:center;font-size:.8rem;color:var(--muted);
+border-top:1px solid rgba(0,0,0,.06);
+}
+footer .brand{color:var(--red);font-weight:800}
+
+/* Animations on scroll */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.reveal.visible{opacity:1;transform:none}
+
+/* Decorative blobs */
+body::before,body::after{
+content:"";position:fixed;z-index:-1;border-radius:50%;pointer-events:none;
+filter:blur(80px);opacity:.35;
+}
+body::before{width:320px;height:320px;background:rgba(196,30,36,.2);top:-80px;left:-60px}
+body::after{width:280px;height:280px;background:rgba(26,147,72,.18);bottom:10%;right:-40px}
+.sec-label{
+display:inline-block;background:var(--green);color:#fff;
+font-size:.7rem;font-weight:800;letter-spacing:.1em;
+padding:.3rem .75rem;border-radius:6px;margin-bottom:.65rem;
+}
+.pricing .sec-head h2{color:var(--red)}
+</style>
+
+<!-- TikTok Pixel Code -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject = t;
+  var ttq = w[t] = w[t] || [];
+  ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie"];
+  ttq.setAndDefer = function (t, e) {
+    t[e] = function () {
+      t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+    };
+  };
+  for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
+  ttq.instance = function (t) {
+    var e = ttq._i[t] || [];
+    for (var n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]);
+    return e;
+  };
+  ttq.load = function (e, n) {
+    var i = "https://analytics.tiktok.com/i18n/pixel/events.js";
+    ttq._i = ttq._i || {};
+    ttq._i[e] = [];
+    ttq._i[e]._u = i;
+    ttq._t = ttq._t || {};
+    ttq._t[e] = +new Date;
+    ttq._o = ttq._o || {};
+    ttq._o[e] = n || {};
+    var o = document.createElement("script");
+    o.type = "text/javascript";
+    o.async = true;
+    o.src = i + "?sdkid=" + e + "&lib=" + t;
+    var a = document.getElementsByTagName("script")[0];
+    a.parentNode.insertBefore(o, a);
+  };
+
+  ttq.load("D1MFAIJC77U87UH7LNJ0");
+  ttq.page();
+}(window, document, "ttq");
+</script>
+<!-- End TikTok Pixel Code -->
+
+</head>
+<body>
+
+<div class="urgency">
+<div class="urgency-inner">
+<span><i class="fas fa-bolt"></i> <strong>عرض عُمان</strong> — دفع عند الاستلام · توصيل 2–5 أيام</span>
+<span class="urgency-timer" id="urgency-timer"><i class="fas fa-clock"></i> <span id="timer-val">14:59:42</span></span>
+<span><i class="fas fa-box"></i> باقي <strong id="stock-left">23</strong> طلب بهالسعر</span>
+</div>
+</div>
+
+<header>
+<div class="hdr-inner">
+<a href="#" class="logo" aria-label="فيتجوم">
+<img src="assets/fitgum-logo.svg" alt="فيتجوم خل التفاح" width="160" height="44">
+</a>
+<nav class="hdr-nav" aria-label="تنقل">
+<a href="#packages">العروض</a>
+<a href="#before-after">قبل وبعد</a>
+<a href="#benefits">الفوائد</a>
+<a href="#checkout">الطلب</a>
+</nav>
+<a href="#checkout" class="hdr-cta"><i class="fas fa-bag-shopping"></i> اطلب الآن</a>
+</div>
+</header>
+
+<section class="hero">
+<div class="wrap hero-grid">
+<div class="hero-copy reveal">
+<div class="hero-top">
+<div>
+<span class="brand-ribbon">فيتجوم</span>
+<span class="brand-xs">قوة إضافية</span>
+<span class="brand-xl">خل التفاح</span>
+<span class="brand-sub">علكة خل التفاح</span>
+</div>
+<div class="badge-60" aria-label="60 علكة عضوية">
+<span class="n">60</span>
+<span class="t">علكة<br>عضوية</span>
+</div>
+</div>
+<p class="hero-sub">مكمل غذائي بنكهة تفاح طبيعية — بدون طعم الخل المرّ. نفس الروتين، أسهل وألذ. متوفر في سلطنة عُمان بالدفع عند الاستلام.</p>
+<span class="hero-label-bar">مكمل غذائي · نكهة تفاح طبيعية</span>
+<div class="hero-price-tag">
+<span class="from">يبدأ من</span>
+<span class="amt">21 <small style="font-size:.55em">ر.ع</small></span>
+<span class="cod">· عند الاستلام</span>
+</div>
+<div class="hero-badges">
+<span class="badge-pill"><i class="fas fa-hand-holding-dollar"></i> ادفع عند الاستلام</span>
+<span class="badge-pill"><i class="fas fa-truck-fast"></i> توصيل كل عُمان</span>
+<span class="badge-pill"><i class="fas fa-certificate"></i> قوة إضافية</span>
+</div>
+<div class="hero-actions">
+<a href="#checkout" class="btn btn-primary btn-lg"><i class="fas fa-cart-plus"></i> اطلب الآن</a>
+<a href="#packages" class="btn btn-ghost"><i class="fas fa-tags"></i> العروض والتوفير</a>
+</div>
+<div class="hero-social">
+<div class="avatars" aria-hidden="true">
+<span class="av">س</span><span class="av">ف</span><span class="av">م</span><span class="av">+</span>
+</div>
+<span><strong style="color:var(--ink)">+2,400</strong> طلب في عُمان · <span class="proof-stars">★★★★★</span> 4.9/5</span>
+</div>
+</div>
+<div class="hero-visual reveal">
+<div class="hero-glow" aria-hidden="true"></div>
+<img class="hero-img" src="assets/fitgum-product.png" alt="فيتجوم علكة خل التفاح" width="480" height="640">
+<div class="float-card a"><i class="fas fa-check-circle"></i> <strong>60</strong> علكة عضوية</div>
+<div class="float-card b"><i class="fas fa-shipping-fast"></i> <strong>توصيل</strong> عُمان</div>
+</div>
+</div>
+</section>
+
+<div class="trust-strip">
+<div class="wrap trust-grid">
+<div class="trust-item"><i class="fas fa-money-bill-wave"></i><strong>عند الاستلام</strong><span>ادفع كاش فقط</span></div>
+<div class="trust-item"><i class="fas fa-map-location-dot"></i><strong>كل عُمان</strong><span>مسقط · صحار · صلالة</span></div>
+<div class="trust-item"><i class="fas fa-shield-halved"></i><strong>مغلّف</strong><span>حماية أصلية</span></div>
+<div class="trust-item"><i class="fas fa-headset"></i><strong>تأكيد سريع</strong><span>نتصل بك بعد الطلب</span></div>
+</div>
+</div>
+
+<div class="proof-bar">
+<div class="wrap proof-grid">
+<div class="proof-item"><strong>+2,400</strong><span>طلب مُسلّم</span></div>
+<div class="proof-item"><strong>4.9/5</strong><span class="proof-stars">★★★★★</span><span>تقييم العملاء</span></div>
+<div class="proof-item"><strong>24–48</strong><span>ساعة بعد التأكيد</span></div>
+<div class="proof-item"><strong>100%</strong><span>دفع عند الاستلام فقط</span></div>
+</div>
+</div>
+
+<section class="offer-strip">
+<div class="wrap offer-inner reveal">
+<div>
+<div class="offer-price">27 <small>ر.ع</small></div>
+<div class="offer-copy">باقة علبتين — الأكثر طلباً · وفّر 15 ر.ع · الدفع عند الاستلام</div>
+</div>
+<a href="#checkout" class="btn btn-lg"><i class="fas fa-bolt"></i> احجز طلبك الآن</a>
+</div>
+</section>
+
+<div class="brand-store">
+<span>متجر فيتجوم الرسمي</span> — خل التفاح · علكة عضوية · عُمان
+</div>
+
+<section class="crv-sec" id="crv">
+<div class="wrap">
+<div class="crv-grid reveal">
+<div class="crv-product">
+<img src="assets/fitgum-product.png" alt="فيتجوم علكة خل التفاح" loading="lazy">
+</div>
+<div class="crv-copy">
+<h2 class="crv-brand-name">فيتجوم</h2>
+<ul class="benefit-checklist">
+<li><span class="check-icon"><i class="fas fa-check"></i></span>تدعم الهضم وتخفّف الانتفاخ</li>
+<li><span class="check-icon"><i class="fas fa-check"></i></span>تقلّل الشهية وتساعد على التحكم بالجوع</li>
+<li><span class="check-icon"><i class="fas fa-check"></i></span>مريحة على المعدة، بدون حرقة الخل</li>
+<li><span class="check-icon"><i class="fas fa-check"></i></span>طعم حلو، سهل الاستخدام، مناسب للروتين اليومي</li>
+</ul>
+<a href="#journey" class="btn btn-primary btn-lg" style="margin-top:1.25rem"><i class="fas fa-arrow-down"></i> شوف رحلة الطلب</a>
+</div>
+</div>
+</div>
+</section>
+
+<section class="journey-sec" id="journey">
+<div class="wrap">
+<div class="sec-head reveal">
+<span class="sec-label">بعد الطلب</span>
+<h2>تأكيد سريع + توصيل لبابك</h2>
+<p>عملية واضحة — بدون دفع مسبق</p>
+</div>
+<div class="journey-product reveal">
+<img src="assets/fitgum-product.png" alt="فيتجوم — المنتج الأصلي" loading="lazy">
+</div>
+<div class="journey-flow reveal">
+<div class="journey-step highlight">
+<div class="j-icon"><i class="fas fa-phone-volume"></i></div>
+<div>
+<strong>١ — مكالمة التأكيد</strong>
+<p>نتصل بك خلال دقائق لتأكيد الطلب والعنوان. <span class="warn">التأكيد ضروري</span> قبل التجهيز.</p>
+</div>
+</div>
+<div class="journey-step">
+<div class="j-icon green"><i class="fas fa-boxes-stacked"></i></div>
+<div>
+<strong>٢ — تجهيز الطلب</strong>
+<p>بعد التأكيد، نحضّر علبتك ونغلّفها بختم الحماية.</p>
+</div>
+</div>
+<div class="journey-step highlight">
+<div class="j-icon green"><i class="fas fa-truck-fast"></i></div>
+<div>
+<strong>٣ — التوصيل</strong>
+<p><span class="delivery-time">24 إلى 48 ساعة</span> بعد التأكيد — نوصل لعنوانك في عُمان.</p>
+</div>
+</div>
+<div class="journey-step">
+<div class="j-icon"><i class="fas fa-hand-holding-dollar"></i></div>
+<div>
+<strong>٤ — ادفع عند الاستلام</strong>
+<p>تستلم المنتج وتدفع كاش فقط — لا بطاقة بنكية.</p>
+</div>
+</div>
+</div>
+<div class="journey-cta reveal">
+<a href="#checkout" class="btn btn-primary btn-lg"><i class="fas fa-cart-plus"></i> اطلب الآن — من 21 ر.ع</a>
+</div>
+</div>
+</section>
+
+<section id="benefits">
+<div class="wrap">
+<div class="sec-head reveal">
+<h2>ليش الناس كتختار فيتجوم؟</h2>
+<p>طعم لذيذ + روتين سهل — بدون شرب خل التفاح السائل</p>
+</div>
+<div class="benefits-grid">
+<article class="benefit-card reveal">
+<div class="benefit-icon"><i class="fas fa-face-smile"></i></div>
+<h3>طعم تفاح لذيذ</h3>
+<p>علكة بنكهة تفاح طبيعية — أسهل من شراب الخل التقليدي.</p>
+</article>
+<article class="benefit-card reveal">
+<div class="benefit-icon"><i class="fas fa-bolt"></i></div>
+<h3>قوة إضافية</h3>
+<p>صيغة مركّزة لدعم روتينك اليومي بجرعة واحدة مريحة.</p>
+</article>
+<article class="benefit-card reveal">
+<div class="benefit-icon"><i class="fas fa-calendar-check"></i></div>
+<h3>60 يوم تغطية</h3>
+<p>علبتين في الشهر تقريباً — 60 علكة عضوية لكل عبوة.</p>
+</article>
+<article class="benefit-card reveal">
+<div class="benefit-icon"><i class="fas fa-seedling"></i></div>
+<h3>عضوي</h3>
+<p>علك عضوية — مكمل غذائي بمعايير واضحة على العبوة.</p>
+</article>
+<article class="benefit-card reveal">
+<div class="benefit-icon"><i class="fas fa-sun"></i></div>
+<h3>سهل الاستخدام</h3>
+<p>خذ علكتين يومياً حسب التعليمات — في أي وقت يناسبك.</p>
+</article>
+<article class="benefit-card reveal">
+<div class="benefit-icon"><i class="fas fa-box-open"></i></div>
+<h3>توصيل لبابك</h3>
+<p>اطلب أونلاين، استلم في عُمان، وادفع كاش عند التسليم.</p>
+</article>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<div class="specs reveal">
+<div>
+<h2>ماذا داخل العبوة؟</h2>
+<ul>
+<li><i class="fas fa-check"></i> <strong>60 علكة عضوية</strong> — تغطية شهر كامل تقريباً</li>
+<li><i class="fas fa-check"></i> <strong>خل تفاح بقوة إضافية</strong> في شكل علكة</li>
+<li><i class="fas fa-check"></i> <strong>نكهة تفاح طبيعية</strong> — مكمل غذائي</li>
+<li><i class="fas fa-check"></i> عبوة محكمة الإغلاق + ختم حماية</li>
+</ul>
+</div>
+<div class="specs-img-wrap">
+<img src="assets/fitgum-product.png" alt="60 علكة عضوية" loading="lazy">
+</div>
+</div>
+</div>
+</section>
+
+<section class="compare-sec">
+<div class="wrap">
+<div class="sec-head reveal">
+<span class="sec-label">لماذا فيتجوم؟</span>
+<h2>علكة ذكية مقابل شراب الخل</h2>
+<p>نفس الفكرة — تجربة أسهل وألذ</p>
+</div>
+<table class="compare-table reveal" aria-label="مقارنة">
+<thead>
+<tr><th></th><th>شراب خل التفاح</th><th>فيتجوم</th></tr>
+</thead>
+<tbody>
+<tr><td>الطعم</td><td class="lose">حامض وقوي</td><td class="win">تفاح لذيذ ✓</td></tr>
+<tr><td>السهولة</td><td class="lose">شرب يومي</td><td class="win">علكتين فقط ✓</td></tr>
+<tr><td>التنقل</td><td class="lose">عبوة سائلة</td><td class="win">جيب معك ✓</td></tr>
+<tr><td>الدفع</td><td>—</td><td class="win">دفع عند الاستلام ✓</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<div class="offers-zone" id="packages">
+<section class="pricing">
+<div class="wrap">
+<div class="sec-head reveal">
+<span class="sec-label">عروض عُمان</span>
+<h2>اختر باقتك ووفّر أكثر</h2>
+<p>العروض هنا — اضغط الباقة وعَبّي الطلب تحتها مباشرة</p>
+</div>
+<div class="pricing-product reveal">
+<img src="assets/fitgum-product.png" alt="فيتجوم علكة خل التفاح" loading="lazy">
+<p>نفس المنتج الأصلي — اختر الكمية اللي تناسبك</p>
+</div>
+<div class="packages" aria-label="اختر باقتك للطلب">
+<div class="pkg" data-qty="1" data-price="21" tabindex="0" role="button" aria-label="علبة واحدة — اذهب للطلب">
+<img class="pkg-thumb" src="assets/fitgum-product.png" alt="علبة واحدة" loading="lazy">
+<div class="pkg-qty">باقة البداية</div>
+<h3>علبة واحدة</h3>
+<div class="pkg-price">21 <small>ر.ع</small></div>
+<div class="pkg-save">&nbsp;</div>
+<div class="pkg-per">21 ر.ع / علبة</div>
+<div class="pkg-scarcity"><i class="fas fa-fire"></i> متوفر</div>
+<span class="pkg-cta"><i class="fas fa-arrow-left"></i> مباشرة للطلب</span>
+</div>
+<div class="pkg popular selected" data-qty="2" data-price="27" tabindex="0" role="button" aria-label="علبتين — اذهب للطلب">
+<img class="pkg-thumb" src="assets/fitgum-product.png" alt="علبتين" loading="lazy">
+<div class="pkg-qty">الأكثر طلباً</div>
+<h3>علبتين</h3>
+<div class="pkg-price">27 <small>ر.ع</small> <span class="pkg-old">42</span></div>
+<div class="pkg-save">وفّر 15 ر.ع — الأفضل للبداية</div>
+<div class="pkg-per">13.5 ر.ع / علبة</div>
+<div class="pkg-scarcity"><i class="fas fa-fire"></i> <span class="pkg-stock">12</span> متبقي اليوم</div>
+<span class="pkg-cta"><i class="fas fa-arrow-left"></i> مباشرة للطلب</span>
+</div>
+<div class="pkg best" data-qty="3" data-price="31" tabindex="0" role="button" aria-label="3 علبات — اذهب للطلب">
+<img class="pkg-thumb" src="assets/fitgum-product.png" alt="3 علبات" loading="lazy">
+<div class="pkg-qty">أقصى توفير</div>
+<h3>3 علبات</h3>
+<div class="pkg-price">31 <small>ر.ع</small> <span class="pkg-old">63</span></div>
+<div class="pkg-save">وفّر 32 ر.ع — أقل سعر للعلبة</div>
+<div class="pkg-per">10.3 ر.ع / علبة</div>
+<div class="pkg-scarcity"><i class="fas fa-fire"></i> <span class="pkg-stock">8</span> متبقي اليوم</div>
+<span class="pkg-cta"><i class="fas fa-arrow-left"></i> مباشرة للطلب</span>
+</div>
+</div>
+<p style="text-align:center;margin-top:1.25rem;font-size:.85rem;color:var(--muted)" class="reveal">
+<i class="fas fa-shield-halved" style="color:var(--green)"></i>
+تأكيد الطلب بالهاتف خلال 30 دقيقة · لا دفع حتى الاستلام
+</p>
+</div>
+</section>
+
+<section class="order-sec offers-form" id="checkout">
+<div class="wrap">
+<div class="order-layout reveal">
+<div class="order-box" id="checkout-form">
+<div class="checkout-head-mobile">
+<h2>أكمل طلبك — 30 ثانية</h2>
+<p>عبّي البيانات واضغط تأكيد الطلب</p>
+</div>
+<div class="order-summary">
+<span id="summary-label">علبتين — 27 ر.ع</span>
+<span class="price" id="summary-price">27 ر.ع</span>
+</div>
+<div id="form-alert" class="form-alert" role="status" aria-live="polite"></div>
+<form id="order-form" novalidate>
+<input type="hidden" name="package" id="field-package" value="2">
+<input type="hidden" name="price" id="field-price" value="27">
+<div class="form-group">
+<label for="name">الاسم الكامل *</label>
+<input type="text" id="name" name="name" required placeholder="مثال: أحمد بن سعيد" autocomplete="name">
+</div>
+<div class="form-group">
+<label for="phone">رقم الجوال (عُمان) *</label>
+<input type="tel" id="phone" name="phone" required placeholder="9XXXXXXX" pattern="[0-9+\s-]{8,14}" autocomplete="tel">
+</div>
+<div class="form-group">
+<label for="city">المحافظة / المدينة *</label>
+<select id="city" name="city" required>
+<option value="">اختر المنطقة</option>
+<option>مسقط</option>
+<option>مطرح</option>
+<option>بوشر</option>
+<option>السيب</option>
+<option>صحار</option>
+<option>نزوى</option>
+<option>صور</option>
+<option>صلالة</option>
+<option>عبري</option>
+<option>البريمي</option>
+<option>خصب</option>
+<option>أخرى</option>
+</select>
+</div>
+<div class="form-group">
+<label for="address">العنوان التفصيلي *</label>
+<textarea id="address" name="address" required placeholder="الحي، الشارع، رقم المنزل أو معلم قريب"></textarea>
+</div>
+<button type="submit" class="btn btn-primary btn-lg submit-btn" id="btn-submit">
+<i class="fas fa-paper-plane"></i> تأكيد الطلب
+</button>
+<div class="order-trust">
+<span><i class="fas fa-check"></i> بدون بطاقة</span>
+<span><i class="fas fa-check"></i> توصيل عُمان</span>
+<span><i class="fas fa-check"></i> تأكيد هاتفي</span>
+</div>
+<p class="cod-note"><i class="fas fa-lock"></i> الدفع عند الاستلام فقط — لا حاجة لبطاقة بنكية</p>
+</form>
+</div>
+<aside class="order-side">
+<img src="assets/fitgum-product.png" alt="" loading="lazy">
+<span class="brand-ribbon">فيتجوم</span>
+<span class="brand-xs">قوة إضافية</span>
+<span class="brand-xl" style="font-size:1.75rem">خل التفاح</span>
+<span class="brand-sub">علكة خل التفاح</span>
+<div class="guarantee-box" style="margin-top:1.25rem">
+<div class="guarantee-item"><i class="fas fa-money-bill-wave"></i><strong>دفع عند الاستلام</strong><span>كاش فقط</span></div>
+<div class="guarantee-item"><i class="fas fa-phone-volume"></i><strong>تأكيد سريع</strong><span>نتصل خلال 30 دقيقة</span></div>
+<div class="guarantee-item"><i class="fas fa-box"></i><strong>تغليف أصلي</strong><span>ختم حماية</span></div>
+</div>
+</aside>
+</div>
+</div>
+</section>
+</div>
+
+<section>
+<div class="wrap">
+<div class="sec-head reveal">
+<h2>كيف تطلب؟</h2>
+<p>3 خطوات بسيطة — بدون بطاقة بنكية</p>
+</div>
+<div class="steps">
+<div class="step reveal">
+<div class="step-num">1</div>
+<h3>اختر الباقة</h3>
+<p>علبة، علبتين، أو 3 علبات بالسعر اللي يناسبك.</p>
+</div>
+<div class="step reveal">
+<div class="step-num">2</div>
+<h3>عَبّي بياناتك</h3>
+<p>الاسم، الجوال، المحافظة، والعنوان — واضغط إرسال.</p>
+</div>
+<div class="step reveal">
+<div class="step-num">3</div>
+<h3>استلم وادفع عند الاستلام</h3>
+<p>نوصل لبابك في عُمان وتدفع كاش عند الاستلام فقط.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<div class="sec-head reveal">
+<h2>آراء العملاء</h2>
+<p>تجارب حقيقية من مشتري فيتجوم</p>
+</div>
+<div class="reviews-grid">
+<article class="review reveal">
+<div class="review-body">
+<div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+<p>«الطعم ممتاز، ما فيه طعم خل قوي. طلبت علبتين ووصلوا بسرعة لمسقط. الدفع عند الاستلام مريح جداً.»</p>
+<div class="review-author">فاطمة · <span>مسقط</span></div>
+</div>
+</article>
+<article class="review reveal">
+<div class="review-body">
+<div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+<p>«أخيراً روتين خل التفاح صار سهل. 60 علكة كافية لشهر. الباقة الثلاثية سعرها ممتاز.»</p>
+<div class="review-author">سالم · <span>صحار</span></div>
+</div>
+</article>
+<article class="review reveal">
+<div class="review-body">
+<div class="review-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-stroke"></i></div>
+<p>«التوصيل لصلالة تم بدون مشاكل. العبوة مغلقة ومختومة. أنصح بباقة 3 علبات للتوفير.»</p>
+<div class="review-author">مريم · <span>صلالة</span></div>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<section>
+<div class="wrap">
+<div class="sec-head reveal">
+<h2>أسئلة شائعة</h2>
+</div>
+<div class="faq-list">
+<div class="faq-item">
+<button type="button" class="faq-q" aria-expanded="false">هل الدفع عند الاستلام متوفر في كل عُمان؟<i class="fas fa-chevron-down"></i></button>
+<div class="faq-a"><div class="faq-a-inner">نعم، نوصل لمعظم مناطق سلطنة عُمان والدفع كاش عند استلام الطلب فقط — بدون دفع مسبق.</div></div>
+</div>
+<div class="faq-item">
+<button type="button" class="faq-q" aria-expanded="false">كم علكة في اليوم؟<i class="fas fa-chevron-down"></i></button>
+<div class="faq-a"><div class="faq-a-inner">اتبع التعليمات على العبوة. عادة 1–2 علكة يومياً. العبوة تحتوي 60 علكة عضوية.</div></div>
+</div>
+<div class="faq-item">
+<button type="button" class="faq-q" aria-expanded="false">كم يستغرق التوصيل؟<i class="fas fa-chevron-down"></i></button>
+<div class="faq-a"><div class="faq-a-inner">عادة 2–5 أيام عمل حسب المحافظة. نتواصل معك قبل التوصيل لتأكيد الموعد.</div></div>
+</div>
+<div class="faq-item">
+<button type="button" class="faq-q" aria-expanded="false">هل المنتج مكمل غذائي؟<i class="fas fa-chevron-down"></i></button>
+<div class="faq-a"><div class="faq-a-inner">نعم، فيتجوم مكمل غذائي بنكهة تفاح طبيعية — ليس دواءً ولا يعالج أمراضاً.</div></div>
+</div>
+</div>
+</div>
+</section>
+
+<footer>
+<div class="wrap">
+<p><span class="brand">فيتجوم</span> · علكة خل التفاح · متجر عُمان الرسمي</p>
+<p style="margin-top:.5rem">مكمل غذائي — ليس للتشخيص أو العلاج. استشر طبيبك عند الحاجة.</p>
+</div>
+</footer>
+
+<div class="sticky-cta">
+<div class="sticky-info">
+<strong id="sticky-price">27 ر.ع</strong><br>
+<span id="sticky-label">علبتين · عند الاستلام</span>
+</div>
+<a href="#checkout" class="btn btn-primary"><i class="fas fa-cart-plus"></i> اطلب الآن</a>
+</div>
+
+<a href="#checkout" class="float-order" id="float-order" aria-label="اطلب الآن">
+<span class="btn btn-primary"><i class="fas fa-bag-shopping"></i> اطلب الآن</span>
+</a>
+
+<script>
+const DEFAULT_SHEET_URL = "https://script.google.com/macros/s/AKfycbyYwJnMo1pyOauCBsSun3lO0dbkdLw6VS8eZYdnLkAmdkEDMSkwGKvtH5STpiWougHJ/exec";
+function getSheetUrl() {
+  try {
+    const s = (localStorage.getItem("fitgum_sheet_url") || "").trim();
+    if (s.indexOf("script.google") > -1 && s.indexOf("/exec") > -1) return s;
+  } catch (e) {}
+  return DEFAULT_SHEET_URL;
+}
+function isSheetLinked() {
+  const u = getSheetUrl();
+  return u && !u.includes("YOUR_GOOGLE_APPS_SCRIPT") && u.indexOf("script.google") > -1;
+}
+
+const PACKAGES = {
+  1: { label: "علبة واحدة", price: 21, summary: "علبة واحدة — 21 ر.ع" },
+  2: { label: "علبتين", price: 27, summary: "علبتين — 27 ر.ع" },
+  3: { label: "3 علبات", price: 31, summary: "3 علبات — 31 ر.ع" }
+};
+
+let selectedQty = 2;
+
+const pkgs = document.querySelectorAll(".pkg");
+const summaryLabel = document.getElementById("summary-label");
+const summaryPrice = document.getElementById("summary-price");
+const stickyPrice = document.getElementById("sticky-price");
+const stickyLabel = document.getElementById("sticky-label");
+const fieldPackage = document.getElementById("field-package");
+const fieldPrice = document.getElementById("field-price");
+
+function updateSelection(qty) {
+  selectedQty = qty;
+  const p = PACKAGES[qty];
+  pkgs.forEach((el) => {
+    const on = Number(el.dataset.qty) === qty;
+    el.classList.toggle("selected", on);
+    el.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+  summaryLabel.textContent = p.summary;
+  summaryPrice.textContent = p.price + " ر.ع";
+  stickyPrice.textContent = p.price + " ر.ع";
+  stickyLabel.textContent = p.label + " · عند الاستلام";
+  fieldPackage.value = qty;
+  fieldPrice.value = p.price;
+  const offerPrice = document.querySelector(".offer-price");
+  if (offerPrice) {
+    offerPrice.innerHTML = p.price + ' <small>ر.ع</small>';
+  }
+  const offerCopy = document.querySelector(".offer-copy");
+  if (offerCopy) {
+    offerCopy.textContent =
+      "باقة " + p.label + " — " + p.price + " ر.ع · دفع عند الاستلام · توصيل عُمان";
+  }
+}
+
+function goCheckout(qty) {
+  updateSelection(qty);
+  const target = document.getElementById("checkout");
+  if (target) {
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    const box = document.getElementById("checkout-form");
+    if (box) {
+      box.classList.add("checkout-flash");
+      setTimeout(() => box.classList.remove("checkout-flash"), 1300);
+    }
+  }
+}
+
+pkgs.forEach((el) => {
+  const qty = Number(el.dataset.qty);
+  const open = () => goCheckout(qty);
+  el.addEventListener("click", open);
+  el.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      open();
+    }
+  });
+});
+
+/* Urgency timer — resets daily feel */
+(function initTimer() {
+  const el = document.getElementById("timer-val");
+  if (!el) return;
+  let sec = 14 * 3600 + 59 * 60 + 42;
+  setInterval(() => {
+    sec = sec > 0 ? sec - 1 : 14 * 3600 + 59 * 60 + 42;
+    const h = Math.floor(sec / 3600);
+    const m = Math.floor((sec % 3600) / 60);
+    const s = sec % 60;
+    el.textContent =
+      String(h).padStart(2, "0") + ":" +
+      String(m).padStart(2, "0") + ":" +
+      String(s).padStart(2, "0");
+  }, 1000);
+})();
+
+/* Stock scarcity pulse */
+(function initStock() {
+  const main = document.getElementById("stock-left");
+  if (!main) return;
+  let n = 23;
+  setInterval(() => {
+    if (n > 8 && Math.random() > 0.7) {
+      n--;
+      main.textContent = n;
+      document.querySelectorAll(".pkg-stock").forEach((s, i) => {
+        const base = [0, 12, 8][i] || 10;
+        if (s) s.textContent = Math.max(3, base - (23 - n));
+      });
+    }
+  }, 12000);
+})();
+
+document.querySelectorAll(".faq-q").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const item = btn.closest(".faq-item");
+    const open = item.classList.toggle("open");
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+});
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) e.target.classList.add("visible");
+    });
+  },
+  { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+);
+document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+
+const formEl = document.getElementById("order-form");
+const alertEl = document.getElementById("form-alert");
+const submitBtn = document.getElementById("btn-submit");
+
+function showAlert(type, text) {
+  alertEl.className = "form-alert show " + type;
+  alertEl.textContent = text;
+}
+
+function hideAlert() {
+  alertEl.className = "form-alert";
+  alertEl.textContent = "";
+}
+
+formEl.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  hideAlert();
+
+  const name = document.getElementById("name").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const city = document.getElementById("city").value;
+  const address = document.getElementById("address").value.trim();
+
+  if (!name || !phone || !city || !address) {
+    showAlert("error", "يرجى تعبئة جميع الحقول المطلوبة.");
+    return;
+  }
+
+  if (!isSheetLinked()) {
+    showAlert("error", "رابط Google Sheet غير موجود. تواصل مع صاحب المتجر.");
+    return;
+  }
+
+  const p = PACKAGES[selectedQty];
+  const payload = {
+    name: name,
+    phone: phone,
+    city: city,
+    address: address,
+    quantity: selectedQty,
+    packageLabel: p.label,
+    price: p.price,
+    source: "fitgum-oman-lp"
+  };
+
+  submitBtn.disabled = true;
+  const oldHtml = submitBtn.innerHTML;
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
+
+  try {
+    await fetch(getSheetUrl(), {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload)
+    });
+
+    try {
+      if (typeof fbq === "function") fbq("track", "Lead", { value: p.price, currency: "OMR" });
+      if (typeof ttq !== "undefined") {
+        ttq.track("CompleteRegistration", {
+          content_type: "product",
+          content_name: "Fitgum Apple Cider Gummies",
+          quantity: selectedQty,
+          value: p.price,
+          currency: "OMR"
+        });
+      }
+    } catch (pixelError) {}
+
+    const thanks = new URL("thank-you.html", location.href);
+    thanks.searchParams.set("name", name);
+    thanks.searchParams.set("phone", phone);
+    thanks.searchParams.set("city", city);
+    thanks.searchParams.set("package", p.label);
+    thanks.searchParams.set("price", String(p.price));
+    window.location.href = thanks.toString();
+    return;
+  } catch (err) {
+    showAlert("error", "تعذّر إرسال الطلب. تأكد من الإنترنت وحاول مرة أخرى.");
+    console.error(err);
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = oldHtml;
+  }
+});
+
+document.querySelectorAll('a[href^="#"]').forEach((a) => {
+  a.addEventListener("click", (e) => {
+    const id = a.getAttribute("href");
+    if (!id || id === "#" || id === "#checkout" || id === "#checkout-form") return;
+    const target = document.querySelector(id);
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+});
+</script>
+</body>
+</html>
