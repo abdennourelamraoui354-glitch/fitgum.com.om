@@ -222,17 +222,20 @@ box-shadow:0 -8px 24px rgba(0,0,0,.08);
 <script src="fitgum-config.js"></script>
 <script src="tiktok-pixel.js"></script>
 <script>
+/* ── Apps Script URL — hardcoded + localStorage override ── */
+var DIRECT_SHEET_URL = "https://script.google.com/macros/s/AKfycby9xcN9oMP1mPGCllj6CzzjdOEqNwyOcp4pqpgS3Wk3oQa8EY8fdb4JbHahMY7aqIEU/exec";
+
 function getSheetUrl() {
   try {
     const s = (localStorage.getItem("fitgum_sheet_url") || "").trim();
     if (s.indexOf("script.google") > -1 && s.indexOf("/exec") > -1) return s;
   } catch (e) {}
-  return window.FITGUM_CONFIG.SHEET_URL;
+  try { if (window.FITGUM_CONFIG && window.FITGUM_CONFIG.SHEET_URL) return window.FITGUM_CONFIG.SHEET_URL; } catch(e) {}
+  return DIRECT_SHEET_URL;
 }
 
 function isSheetLinked() {
-  const u = getSheetUrl();
-  return u && !u.includes("YOUR_GOOGLE_APPS_SCRIPT") && u.indexOf("script.google") > -1;
+  return true; /* always try — URL is hardcoded above */
 }
 
 const connectBox = document.getElementById("connect-box");
