@@ -314,41 +314,49 @@ formEl.addEventListener("submit", async (e) => {
     return;
   }
   submitBtn.disabled = true;
-  try {
-    const res = await fetch(sheetUrl, {
+  submitBtn.textContent = "جاري الإرسال…";
+
+  /* ── Build thank-you URL first ── */
+  const orderId = 'FG-' + Date.now();
+  const thanks  = new URL("thank-you.html", location.href);
+  thanks.searchParams.set("name",    name);
+  thanks.searchParams.set("phone",   phone);
+  thanks.searchParams.set("city",    city);
+  thanks.searchParams.set("package", p.label);
+  thanks.searchParams.set("price",   String(p.price));
+  thanks.searchParams.set("qty",     String(qty));
+  thanks.searchParams.set("orderId", orderId);
+
+  /* ── TikTok pixel ── */
+  if (window.FGPixel) {
+    try { localStorage.setItem('fg_qty', qty); localStorage.setItem('fg_price', p.price); } catch(e) {}
+    window.FGPixel.initiateCheckout(qty, p.price, phone);
+  }
+
+  /* ── Send to sheet in background (fire + forget) ── */
+  /* Always redirect regardless of sheet result — COD call matters more */
+  const payload = JSON.stringify({
+    name, phone, city, address,
+    packageLabel: p.label, packageQty: qty, price: p.price,
+    source: "fitgum-oman"
+  });
+
+  function redirect() { location.href = thanks.toString(); }
+
+  if (isSheetLinked()) {
+    const timeout = setTimeout(redirect, 5000); /* hard fallback after 5s */
+    fetch(sheetUrl, {
       method: "POST",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({
-        name, phone, city, address,
-        packageLabel: p.label, packageQty: qty, price: p.price,
-        source: "fitgum-checkout"
-      })
-    });
-    const data = await res.json();
-    if (!data.ok) throw new Error();
-    /* generate order ID for deduplication */
-    const orderId = 'FG-' + Date.now();
-
-    const thanks = new URL("thank-you.html", location.href);
-    thanks.searchParams.set("name", name);
-    thanks.searchParams.set("phone", phone);
-    thanks.searchParams.set("city", city);
-    thanks.searchParams.set("package", p.label);
-    thanks.searchParams.set("price", String(p.price));
-    thanks.searchParams.set("qty", String(qty));
-    thanks.searchParams.set("orderId", orderId);
-
-    /* ── TikTok: advanced match + navigate ── */
-    if (window.FGPixel) {
-      window.FGPixel.initiateCheckout(qty, p.price, phone);
-      try { localStorage.setItem('fg_qty', qty); localStorage.setItem('fg_price', p.price); } catch(e) {}
-      setTimeout(() => { location.href = thanks.toString(); }, 400);
-    } else {
-      location.href = thanks.toString();
-    }
-  } catch {
-    showAlert("error", "تعذّر الإرسال. حاول مرة أخرى.");
-    submitBtn.disabled = false;
+      body: payload
+    })
+    .then(r => r.json())
+    .then(d => { clearTimeout(timeout); redirect(); })
+    .catch(() => { clearTimeout(timeout); redirect(); });
+  } else {
+    /* Sheet not linked — redirect immediately, log warning */
+    console.warn("[FitGum] Sheet not linked — order not saved to sheet.");
+    redirect();
   }
 });
 
