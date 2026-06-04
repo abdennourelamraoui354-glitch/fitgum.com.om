@@ -346,21 +346,27 @@ formEl.addEventListener("submit", async (e) => {
 
   function redirect() { location.href = thanks.toString(); }
 
-  if (isSheetLinked()) {
-    const timeout = setTimeout(redirect, 5000); /* hard fallback after 5s */
-    fetch(sheetUrl, {
-      method: "POST",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: payload
-    })
-    .then(r => r.json())
-    .then(d => { clearTimeout(timeout); redirect(); })
-    .catch(() => { clearTimeout(timeout); redirect(); });
-  } else {
-    /* Sheet not linked — redirect immediately, log warning */
-    console.warn("[FitGum] Sheet not linked — order not saved to sheet.");
+  /* Send to sheet — Google Apps Script needs redirect:follow */
+  const timeout = setTimeout(redirect, 6000);
+  fetch(sheetUrl, {
+    method: "POST",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    redirect: "follow",
+    body: payload
+  })
+  .then(r => r.text())
+  .then(t => {
+    console.log("[FitGum] Sheet response:", t);
+    clearTimeout(timeout);
     redirect();
-  }
+  })
+  .catch(err => {
+    console.error("[FitGum] Sheet fetch error:", err);
+    /* Fallback: try sendBeacon (fire-and-forget) */
+    try { navigator.sendBeacon(sheetUrl, payload); } catch(e) {}
+    clearTimeout(timeout);
+    redirect();
+  });
 });
 
 setTimeout(() => document.getElementById("name")?.focus(), 400);
