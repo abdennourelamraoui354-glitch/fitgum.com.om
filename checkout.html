@@ -346,27 +346,34 @@ formEl.addEventListener("submit", async (e) => {
 
   function redirect() { location.href = thanks.toString(); }
 
-  /* Send to sheet — Google Apps Script needs redirect:follow */
-  const timeout = setTimeout(redirect, 6000);
-  fetch(sheetUrl, {
-    method: "POST",
-    headers: { "Content-Type": "text/plain;charset=utf-8" },
-    redirect: "follow",
-    body: payload
-  })
-  .then(r => r.text())
-  .then(t => {
-    console.log("[FitGum] Sheet response:", t);
-    clearTimeout(timeout);
-    redirect();
-  })
-  .catch(err => {
-    console.error("[FitGum] Sheet fetch error:", err);
-    /* Fallback: try sendBeacon (fire-and-forget) */
-    try { navigator.sendBeacon(sheetUrl, payload); } catch(e) {}
-    clearTimeout(timeout);
-    redirect();
-  });
+  /* ── Send to Google Apps Script ──────────────────────────────
+     Apps Script does 302 redirect on POST — use no-cors mode
+     so the POST fires directly without redirect interference.
+     sendBeacon is backup (fires even during page unload).
+  ─────────────────────────────────────────────────────────── */
+  let sent = false;
+
+  /* Primary: sendBeacon — most reliable for GAS */
+  try {
+    const blob = new Blob([payload], { type: "text/plain;charset=utf-8" });
+    sent = navigator.sendBeacon(sheetUrl, blob);
+    console.log("[FitGum] sendBeacon:", sent ? "queued ✓" : "failed");
+  } catch(e) { console.warn("[FitGum] sendBeacon error:", e); }
+
+  /* Backup: fetch no-cors — bypasses redirect issue */
+  if (!sent) {
+    fetch(sheetUrl, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: payload
+    })
+    .then(() => console.log("[FitGum] fetch no-cors: sent ✓"))
+    .catch(e => console.error("[FitGum] fetch error:", e));
+  }
+
+  /* Redirect after short delay (let sendBeacon queue first) */
+  setTimeout(redirect, 800);
 });
 
 setTimeout(() => document.getElementById("name")?.focus(), 400);
