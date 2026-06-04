@@ -9,8 +9,7 @@
  * 5. انسخ رابط /exec والصقه هنا في DEFAULT_URL
  */
 (function () {
-  /* ⚠️ استبدل هذا بالرابط الجديد بعد Deploy */
-  var DEFAULT_URL = "https://script.google.com/macros/s/AKfycbwL03MmvNKTE77WKUeq64iKQDySQE87CLuyu5YhuLPmdbMm--w1PVTfQ8_1pXIqoYCxBA/exec";
+  var DEFAULT_URL = "https://script.google.com/macros/s/AKfycby9xcN9oMP1mPGCllj6CzzjdOEqNwyOcp4pqpgS3Wk3oQa8EY8fdb4JbHahMY7aqIEU/exec";
   var stored = "";
   try {
     stored = localStorage.getItem("fitgum_sheet_url") || "";
