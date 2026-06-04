@@ -331,9 +331,8 @@ formEl.addEventListener("submit", async (e) => {
 
   /* ── Send to sheet in background (fire + forget) ── */
   /* Always redirect regardless of sheet result — COD call matters more */
-  /* SKU: FG-1X / FG-2X / FG-3X + order ID */
-  const skuMap = { 1: "FG-1X", 2: "FG-2X", 3: "FG-3X" };
-  const sku = (skuMap[qty] || "FG-1X") + "-" + orderId;
+  /* Product SKU — fixed */
+  const sku = "CGTSGM";
 
   const payload = JSON.stringify({
     name, phone, city, address,
