@@ -220,6 +220,7 @@ box-shadow:0 -8px 24px rgba(0,0,0,.08);
 </div>
 
 <script src="fitgum-config.js"></script>
+<script src="tiktok-pixel.js"></script>
 <script>
 function getSheetUrl() {
   try {
@@ -325,13 +326,26 @@ formEl.addEventListener("submit", async (e) => {
     });
     const data = await res.json();
     if (!data.ok) throw new Error();
+    /* generate order ID for deduplication */
+    const orderId = 'FG-' + Date.now();
+
     const thanks = new URL("thank-you.html", location.href);
     thanks.searchParams.set("name", name);
     thanks.searchParams.set("phone", phone);
     thanks.searchParams.set("city", city);
     thanks.searchParams.set("package", p.label);
     thanks.searchParams.set("price", String(p.price));
-    location.href = thanks.toString();
+    thanks.searchParams.set("qty", String(qty));
+    thanks.searchParams.set("orderId", orderId);
+
+    /* ── TikTok: advanced match + navigate ── */
+    if (window.FGPixel) {
+      window.FGPixel.initiateCheckout(qty, p.price, phone);
+      try { localStorage.setItem('fg_qty', qty); localStorage.setItem('fg_price', p.price); } catch(e) {}
+      setTimeout(() => { location.href = thanks.toString(); }, 400);
+    } else {
+      location.href = thanks.toString();
+    }
   } catch {
     showAlert("error", "تعذّر الإرسال. حاول مرة أخرى.");
     submitBtn.disabled = false;

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TikTok Pixel Test — FitGum</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:monospace;background:#0d0d0d;color:#eee;padding:1.5rem;line-height:1.6}
+h1{color:#EE1D52;font-size:1.4rem;margin-bottom:.5rem}
+.subtitle{color:#888;font-size:.85rem;margin-bottom:2rem}
+.pixel-id{display:inline-block;background:#1a1a1a;border:1px solid #333;
+  padding:.3rem .8rem;border-radius:6px;color:#EE1D52;font-size:.9rem;margin-bottom:2rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1rem;margin-bottom:2rem}
+button{
+  width:100%;padding:.9rem 1rem;border:none;border-radius:10px;
+  font-size:.9rem;font-weight:700;cursor:pointer;
+  font-family:monospace;transition:opacity .2s,transform .1s;
+}
+button:hover{opacity:.85}
+button:active{transform:scale(.97)}
+.btn-pv  {background:#1a1a2e;color:#5c9aff;border:1px solid #5c9aff}
+.btn-vc  {background:#1a2e1a;color:#4caf50;border:1px solid #4caf50}
+.btn-ac  {background:#2e1a1a;color:#ff9800;border:1px solid #ff9800}
+.btn-ic  {background:#2e2a1a;color:#ffeb3b;border:1px solid #ffeb3b}
+.btn-pur {background:#2e1a2a;color:#EE1D52;border:1px solid #EE1D52}
+.btn-all {background:#EE1D52;color:#fff;font-size:1rem;padding:1rem;grid-column:1/-1}
+.log-box{
+  background:#111;border:1px solid #222;border-radius:10px;
+  padding:1rem;min-height:180px;max-height:320px;overflow-y:auto;
+  font-size:.78rem;line-height:1.8;
+}
+.log-box .ev{color:#EE1D52;font-weight:bold}
+.log-box .ok{color:#4caf50}
+.log-box .ts{color:#555;font-size:.7rem}
+.status-bar{
+  display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1.5rem;
+}
+.badge{padding:.25rem .75rem;border-radius:99px;font-size:.75rem;font-weight:700}
+.badge.online{background:rgba(76,175,80,.15);color:#4caf50;border:1px solid #4caf50}
+.badge.offline{background:rgba(238,29,82,.15);color:#EE1D52;border:1px solid #EE1D52}
+h2{font-size:.9rem;color:#888;margin-bottom:.75rem;text-transform:uppercase;letter-spacing:.1em}
+.sep{border:none;border-top:1px solid #222;margin:1.5rem 0}
+code{background:#1a1a1a;padding:.15rem .4rem;border-radius:4px;color:#aaa;font-size:.8rem}
+.checklist{list-style:none;display:grid;gap:.4rem}
+.checklist li{font-size:.82rem;color:#bbb}
+.checklist li::before{content:"□ ";color:#555}
+.checklist li.done::before{content:"✓ ";color:#4caf50}
+.checklist li.done{color:#4caf50}
+</style>
+</head>
+<body>
+
+<h1>🎯 TikTok Pixel — Debug Console</h1>
+<p class="subtitle">FitGum · Oman · COD · 2026</p>
+
+<div class="pixel-id" id="pixel-display">Pixel ID: Loading…</div>
+
+<div class="status-bar">
+  <span class="badge" id="badge-ttq">ttq: —</span>
+  <span class="badge" id="badge-fg">FGPixel: —</span>
+  <span class="badge" id="badge-page">Page: —</span>
+</div>
+
+<h2>Manual Event Triggers</h2>
+<div class="grid">
+  <button class="btn-pv"  onclick="firePageView()">📄 PageView</button>
+  <button class="btn-vc"  onclick="fireViewContent()">👁 ViewContent</button>
+  <button class="btn-ac"  onclick="fireAddToCart()">🛒 AddToCart</button>
+  <button class="btn-ic"  onclick="fireInitiateCheckout()">💳 InitiateCheckout</button>
+  <button class="btn-pur" onclick="firePurchase()">💰 CompletePayment + Purchase</button>
+  <button class="btn-all" onclick="fireAll()">⚡ FIRE ALL EVENTS (sequence)</button>
+</div>
+
+<h2>Event Log</h2>
+<div class="log-box" id="log-box">
+  <span style="color:#555">— Waiting for events… —</span>
+</div>
+
+<hr class="sep">
+
+<h2>Deployment Checklist</h2>
+<ul class="checklist" id="checklist">
+  <li id="c1">tiktok-pixel.js uploaded to server</li>
+  <li id="c2">Pixel script added to index.html</li>
+  <li id="c3">Pixel script added to checkout.html</li>
+  <li id="c4">Pixel script added to thank-you.html</li>
+  <li id="c5">ttq object loads without errors (check browser console)</li>
+  <li id="c6">PageView fires on every page</li>
+  <li id="c7">ViewContent fires on index.html load</li>
+  <li id="c8">AddToCart fires when package is tapped</li>
+  <li id="c9">InitiateCheckout fires on checkout.html + form submit</li>
+  <li id="c10">CompletePayment + Purchase fires on thank-you.html</li>
+  <li id="c11">Test in TikTok Events Manager → Test Events tab</li>
+  <li id="c12">Events visible in TikTok Ads Manager within 24h</li>
+</ul>
+
+<hr class="sep">
+
+<h2>Where to place your credentials</h2>
+<p style="font-size:.82rem;color:#888;line-height:2">
+  Pixel ID → <code>tiktok-pixel.js</code> line 14: <code>var PIXEL_ID = 'D1MFAIJC77U87UH7LNJ0'</code> ✓ Already set<br>
+  Access Token (CAPI) → <code>tiktok-pixel.js</code> line — (add when backend ready)<br>
+  Test Event Code → TikTok Events Manager → Web Events → Test Events tab → paste code in browser console:<br>
+  <code>ttq.load('D1MFAIJC77U87UH7LNJ0', {debug: true})</code>
+</p>
+
+<script src="fitgum-config.js"></script>
+<script src="tiktok-pixel.js"></script>
+<script>
+var logEl = document.getElementById('log-box');
+var firstLog = true;
+
+function addLog(ev, detail, color) {
+  if (firstLog) { logEl.innerHTML = ''; firstLog = false; }
+  var ts = new Date().toLocaleTimeString('en');
+  var line = document.createElement('div');
+  line.innerHTML = '<span class="ts">[' + ts + ']</span> ' +
+    '<span class="ev" style="color:' + (color||'#EE1D52') + '">' + ev + '</span> ' +
+    '<span class="ok">' + JSON.stringify(detail||{}) + '</span>';
+  logEl.prepend(line);
+}
+
+/* Patch ttq.track to intercept and log */
+window.addEventListener('load', function () {
+  var pixelId = 'D1MFAIJC77U87UH7LNJ0';
+  document.getElementById('pixel-display').textContent = 'Pixel ID: ' + pixelId;
+
+  /* Status badges */
+  var bTtq = document.getElementById('badge-ttq');
+  var bFg  = document.getElementById('badge-fg');
+  var bPg  = document.getElementById('badge-page');
+
+  if (window.ttq) { bTtq.textContent='ttq: ✓ loaded'; bTtq.className='badge online'; }
+  else             { bTtq.textContent='ttq: ✗ not found'; bTtq.className='badge offline'; }
+
+  if (window.FGPixel) { bFg.textContent='FGPixel: ✓ ready'; bFg.className='badge online'; }
+  else                { bFg.textContent='FGPixel: ✗ missing'; bFg.className='badge offline'; }
+
+  bPg.textContent = 'Page: pixel-test.html';
+  bPg.className   = 'badge online';
+
+  addLog('PAGE LOAD', {ttq: !!window.ttq, FGPixel: !!window.FGPixel}, '#5c9aff');
+});
+
+function firePageView() {
+  if (window.ttq) { window.ttq.page(); addLog('PageView', {method:'ttq.page()'}, '#5c9aff'); }
+  else addLog('ERROR', 'ttq not loaded', '#ff5252');
+}
+
+function fireViewContent() {
+  if (window.FGPixel) { window.FGPixel.viewContent(2, 27); addLog('ViewContent', {qty:2,price:27,currency:'OMR'}, '#4caf50'); }
+  else addLog('ERROR', 'FGPixel not loaded', '#ff5252');
+}
+
+function fireAddToCart() {
+  if (window.FGPixel) { window.FGPixel.addToCart(2, 27); addLog('AddToCart', {qty:2,price:27,currency:'OMR'}, '#ff9800'); }
+  else addLog('ERROR', 'FGPixel not loaded', '#ff5252');
+}
+
+function fireInitiateCheckout() {
+  if (window.FGPixel) { window.FGPixel.initiateCheckout(2, 27, '+96891234567'); addLog('InitiateCheckout', {qty:2,price:27,phone:'hashed'}, '#ffeb3b'); }
+  else addLog('ERROR', 'FGPixel not loaded', '#ff5252');
+}
+
+function firePurchase() {
+  var oid = 'TEST-' + Date.now();
+  /* clear dedup key so test re-fires */
+  try { sessionStorage.removeItem('fg_purchase_' + oid); } catch(e) {}
+  if (window.FGPixel) {
+    window.FGPixel.purchase({qty:2, price:27, phone:'+96891234567', orderId: oid});
+    addLog('CompletePayment + Purchase', {qty:2,price:27,orderId:oid,currency:'OMR'}, '#EE1D52');
+  } else addLog('ERROR', 'FGPixel not loaded', '#ff5252');
+}
+
+function fireAll() {
+  addLog('⚡ FIRING ALL EVENTS…', {delay:'0/800/1600/2400/3200ms'}, '#fff');
+  firePageView();
+  setTimeout(fireViewContent,   800);
+  setTimeout(fireAddToCart,    1600);
+  setTimeout(fireInitiateCheckout, 2400);
+  setTimeout(firePurchase,     3200);
+}
+
+/* Auto-check checklist items */
+window.addEventListener('load', function () {
+  setTimeout(function () {
+    if (window.ttq)    { document.getElementById('c5').classList.add('done'); }
+    if (window.FGPixel){ ['c2','c3','c4'].forEach(function(id){ document.getElementById(id).classList.add('done'); }); }
+    document.getElementById('c1').classList.add('done');
+  }, 1500);
+});
+</script>
+</body>
+</html>

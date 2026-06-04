@@ -182,23 +182,35 @@ text-align:center;margin-top:2rem;font-size:.78rem;color:var(--muted);
 <p class="footer-note">فيتجوم · علكة خل التفاح · مكمل غذائي</p>
 </main>
 
+<script src="tiktok-pixel.js"></script>
 <script>
 (function () {
   const q = new URLSearchParams(location.search);
-  const name = q.get("name");
-  const phone = q.get("phone");
-  const city = q.get("city");
-  const pkg = q.get("package");
-  const price = q.get("price");
+  const name    = q.get("name");
+  const phone   = q.get("phone");
+  const city    = q.get("city");
+  const pkg     = q.get("package");
+  const price   = q.get("price");
+  const qty     = q.get("qty");
+  const orderId = q.get("orderId");
 
   if (name || phone || pkg) {
     document.getElementById("order-summary").hidden = false;
-    document.getElementById("sum-name").textContent = name || "—";
-    document.getElementById("sum-phone").textContent = phone || "—";
-    document.getElementById("sum-city").textContent = city || "—";
-    document.getElementById("sum-package").textContent = pkg || "—";
-    document.getElementById("sum-price").textContent = price ? price + " ر.ع" : "—";
+    document.getElementById("sum-name").textContent    = name  || "—";
+    document.getElementById("sum-phone").textContent   = phone || "—";
+    document.getElementById("sum-city").textContent    = city  || "—";
+    document.getElementById("sum-package").textContent = pkg   || "—";
+    document.getElementById("sum-price").textContent   = price ? price + " ر.ع" : "—";
   }
+
+  /* ── TikTok Purchase event ── */
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+      if (window.FGPixel) {
+        window.FGPixel.purchase({ qty: qty, price: price, phone: phone, orderId: orderId });
+      }
+    }, 1200);
+  });
 })();
 </script>
 </body>

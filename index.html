@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
-<link rel="preload" as="image" href="fitgum-product.png" fetchpriority="high">
+<link rel="preload" as="image" href="assets/fitgum-product.png" fetchpriority="high">
 <style>
 :root{
 --red:#c41e24;
@@ -97,7 +97,7 @@ box-shadow:var(--ribbon-shadow);
 }
 .brand-xl{
 display:block;font-size:clamp(2rem,7vw,3rem);font-weight:900;
-line-height:1.15;color:var(--red);margin:.4rem 0 .15rem;
+line-height:1.15;margin:.4rem 0 .15rem;
 }
 .brand-sub{
 display:block;font-size:clamp(1rem,3vw,1.25rem);font-weight:800;
@@ -610,8 +610,9 @@ pointer-events:none;
 }
 .pkg.selected .pkg-cta{background:var(--red)}
 .pkg-thumb{
-width:100%;max-height:100px;object-fit:contain;margin-bottom:.75rem;
-border-radius:12px;background:var(--cream);padding:.5rem;
+  display:block;width:auto;max-width:90%;max-height:116px;
+  object-fit:contain;
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.12));
 }
 .pkg-old{
 font-size:.85rem;color:var(--muted);text-decoration:line-through;
@@ -815,48 +816,476 @@ font-size:.7rem;font-weight:800;letter-spacing:.1em;
 padding:.3rem .75rem;border-radius:6px;margin-bottom:.65rem;
 }
 .pricing .sec-head h2{color:var(--red)}
+
+/* ============================================
+   ✨ WOW TOUCHES
+   ============================================ */
+
+/* 1 — Primary CTA: breathing glow */
+.btn-primary{
+  animation:ctaGlow 2.8s ease-in-out infinite;
+}
+@keyframes ctaGlow{
+  0%,100%{box-shadow:0 8px 0 var(--red-deep),0 14px 32px rgba(196,30,36,.30)}
+  50%{box-shadow:0 8px 0 var(--red-deep),0 18px 44px rgba(196,30,36,.58)}
+}
+.btn-primary:hover{animation:none}
+
+/* 2 — Submit button shimmer sweep */
+.submit-btn{position:relative;overflow:hidden}
+.submit-btn::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.22) 50%,transparent 70%);
+  background-size:200% 100%;background-position:200% 0;
+  animation:btnShine 2.6s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes btnShine{
+  0%{background-position:200% 0}
+  35%{background-position:-200% 0}
+  100%{background-position:-200% 0}
+}
+
+/* 3 — Hero product: animated rings behind bottle */
+.hero-glow::before,.hero-glow::after{
+  content:"";position:absolute;border-radius:50%;
+  top:50%;left:50%;transform:translate(-50%,-50%);
+}
+.hero-glow::before{
+  width:110%;aspect-ratio:1;
+  border:2px solid rgba(196,30,36,.14);
+  animation:ringSpin 6s linear infinite;
+}
+.hero-glow::after{
+  width:140%;aspect-ratio:1;
+  border:1.5px dashed rgba(26,147,72,.12);
+  animation:ringSpin 10s linear infinite reverse;
+}
+@keyframes ringSpin{from{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+
+/* 4 — Hero image hover lift */
+.hero-img{transition:transform .5s var(--ease)}
+.hero-visual:hover .hero-img{transform:scale(1.04) translateY(-6px)}
+
+/* 5 — Float cards: icon bounce */
+.float-card i{animation:iconBounce 2.2s ease-in-out infinite}
+.float-card.b i{animation-delay:.7s}
+@keyframes iconBounce{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+
+/* 6 — Package image section: clearly separated from text */
+.pkg{display:flex;flex-direction:column}
+.pkg-img-wrap{
+  position:relative;
+  display:flex;align-items:flex-end;justify-content:center;
+  background:var(--cream);
+  border-radius:12px;
+  padding:.75rem .5rem .5rem;
+  min-height:140px;
+  margin-bottom:1rem;
+  overflow:hidden;
+}
+.pkg-img-wrap .pkg-thumb{
+  display:block;
+  width:auto;max-width:100%;
+  max-height:110px;
+  object-fit:contain;
+  margin:0 auto;
+}
+.qty-tag{
+  position:absolute;top:8px;left:8px;
+  background:var(--red);color:#fff;
+  font-size:.8rem;font-weight:900;font-family:'Cairo',sans-serif;
+  padding:.15rem .5rem;border-radius:7px;
+  box-shadow:0 2px 0 var(--red-deep);line-height:1.6;
+}
+.pkg.popular .qty-tag{background:var(--green);box-shadow:0 2px 0 var(--green-dark)}
+
+/* 7 — Selected package shimmer (clip only the ::after, not the whole card) */
+.pkg.selected::after{
+  content:"";position:absolute;inset:0;border-radius:var(--radius);
+  background:linear-gradient(105deg,transparent 38%,rgba(196,30,36,.07) 50%,transparent 62%);
+  background-size:200% 100%;background-position:200% 0;
+  animation:pkgShimmer 2.4s ease-in-out infinite;
+  pointer-events:none;
+}
+@keyframes pkgShimmer{
+  0%{background-position:200% 0}100%{background-position:-200% 0}
+}
+
+/* 8 — Journey step: left accent bar */
+.journey-step{position:relative;overflow:hidden}
+.journey-step.highlight::after{
+  content:"";position:absolute;top:0;bottom:0;right:0;
+  width:4px;
+  background:linear-gradient(180deg,var(--green),var(--green-light));
+  border-radius:0 2px 2px 0;
+}
+
+/* 9 — Section heading: gradient underline */
+.sec-head h2{display:inline-block}
+.sec-head h2::after{
+  content:"";display:block;
+  width:52px;height:3px;
+  background:linear-gradient(90deg,var(--red),var(--green));
+  border-radius:2px;margin:.5rem auto 0;
+}
+
+/* 10 — Review: big decorative quote */
+.review-body::before{
+  content:"\201C";
+  display:block;font-size:3rem;line-height:.7;
+  color:var(--red);opacity:.13;
+  margin-bottom:.3rem;
+}
+
+/* 11 — Trust items: icon pop on hover */
+.trust-item i{transition:transform .3s var(--ease)}
+.trust-item:hover i{transform:scale(1.3) rotate(-8deg)}
+
+/* 12 — Proof bar: number pop on hover */
+.proof-item strong{transition:transform .25s var(--ease),color .25s}
+.proof-item:hover strong{transform:scale(1.14);color:var(--red)}
+
+/* 13 — Urgency timer: heartbeat */
+.urgency-timer{animation:heartbeat 1.4s ease-in-out infinite}
+@keyframes heartbeat{
+  0%,100%{background:rgba(0,0,0,.2)}
+  50%{background:rgba(255,255,255,.18)}
+}
+
+/* 14 — Benefit card: gradient top border */
+.benefit-card{border-top:none;padding-top:calc(1.35rem + 3px);position:relative}
+.benefit-card::before{
+  content:"";position:absolute;
+  top:0;left:0;right:0;height:3px;
+  border-radius:var(--radius) var(--radius) 0 0;
+  background:linear-gradient(90deg,var(--green),var(--green-light));
+}
+
+/* 15 — Offer strip: button shine on hover */
+.offer-strip .btn{position:relative;overflow:hidden}
+.offer-strip .btn::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.28) 50%,transparent 70%);
+  background-size:200% 100%;background-position:200% 0;
+  transition:background-position .5s;pointer-events:none;
+}
+.offer-strip .btn:hover::after{background-position:-200% 0}
+
+/* 16 — Sticky CTA mini product image */
+.sticky-cta::before{
+  content:"";
+  width:36px;height:36px;flex-shrink:0;
+  background:url('assets/fitgum-product.png') center/contain no-repeat;
+  border-radius:8px;
+}
+
+/* ============================================
+   🚀 MOTION LAYER — Premium Brand Feel
+   ============================================ */
+
+/* ── Hero headline gradient flow ── */
+.brand-xl{
+  background:linear-gradient(90deg,var(--red) 0%,#ff5252 30%,var(--red-deep) 60%,var(--red) 100%);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:textFlow 3.5s linear infinite;
+}
+@keyframes textFlow{0%{background-position:0% center}100%{background-position:200% center}}
+
+/* ── Hero floating micro-dots ── */
+.hero{overflow:hidden}
+.hero-dot{
+  position:absolute;border-radius:50%;pointer-events:none;
+  animation:floatDot linear infinite;
+}
+@keyframes floatDot{
+  0%{transform:translateY(0) scale(0);opacity:0}
+  10%{opacity:1}90%{opacity:.6}
+  100%{transform:translateY(-320px) scale(1);opacity:0}
+}
+
+/* ── Product 3D tilt — style wrapper ── */
+.hero-visual{perspective:900px}
+.hero-img{
+  transform-style:preserve-3d;
+  transition:transform .15s ease-out,filter .4s;
+  will-change:transform;
+}
+
+/* ── Staggered benefit card entrance ── */
+.benefit-card:nth-child(1){transition-delay:.05s}
+.benefit-card:nth-child(2){transition-delay:.12s}
+.benefit-card:nth-child(3){transition-delay:.19s}
+.benefit-card:nth-child(4){transition-delay:.26s}
+.benefit-card:nth-child(5){transition-delay:.33s}
+.benefit-card:nth-child(6){transition-delay:.40s}
+
+/* ── Staggered review entrance ── */
+.review:nth-child(1){transition-delay:.06s}
+.review:nth-child(2){transition-delay:.16s}
+.review:nth-child(3){transition-delay:.26s}
+
+/* ── Package card pop-in on select ── */
+.pkg{transition:border-color .25s,transform .3s var(--ease),box-shadow .3s}
+.pkg.selected{transform:translateY(-6px) scale(1.02)}
+.pkg.popular.selected{transform:translateY(-8px) scale(1.03)}
+
+/* ── Live purchase notification ── */
+.live-notif{
+  position:fixed;bottom:90px;left:20px;z-index:300;
+  display:flex;align-items:center;gap:12px;
+  background:#fff;border-radius:16px;
+  padding:12px 16px;max-width:270px;
+  box-shadow:0 20px 50px rgba(0,0,0,.14);
+  border-right:4px solid var(--green);
+  transform:translateX(-120%);
+  transition:transform .55s var(--ease);
+  font-size:.82rem;
+}
+.live-notif.show{transform:translateX(0)}
+.live-notif .notif-icon{
+  width:38px;height:38px;border-radius:10px;flex-shrink:0;
+  background:url('assets/fitgum-product.png') center/contain no-repeat;
+  background-color:var(--cream);
+}
+.live-notif strong{display:block;font-size:.85rem;color:var(--ink);margin-bottom:2px}
+.live-notif span{color:var(--muted)}
+.notif-dot{
+  display:inline-block;width:7px;height:7px;border-radius:50%;
+  background:var(--green);margin-left:5px;
+  animation:dotPulse 1s ease-in-out infinite;
+}
+@keyframes dotPulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.5);opacity:.5}}
+
+/* ── Stock urgency progress bar ── */
+.stock-bar-wrap{
+  background:rgba(0,0,0,.06);border-radius:99px;
+  height:6px;margin-top:.55rem;overflow:hidden;
+}
+.stock-bar{
+  height:100%;border-radius:99px;
+  background:linear-gradient(90deg,var(--green),#7ed56f);
+  transition:width 1.2s var(--ease);
+}
+
+/* ── Proof counter numbers pop ── */
+.proof-item strong{
+  font-size:clamp(1.15rem,3vw,1.4rem);
+  display:block;
+}
+
+/* ── Magnetic button wrapper ── */
+.btn-magnetic{display:inline-block;transition:transform .2s var(--ease)}
+
+/* ── Section reveal: slide up with color flash ── */
+.reveal-fast{
+  opacity:0;transform:translateY(18px);
+  transition:opacity .45s var(--ease),transform .45s var(--ease);
+}
+.reveal-fast.visible{opacity:1;transform:none}
+
+/* ── CRV product card glow border ── */
+.crv-product{
+  transition:box-shadow .4s var(--ease),border-color .4s;
+  animation:cardGlow 4s ease-in-out infinite;
+}
+@keyframes cardGlow{
+  0%,100%{box-shadow:0 20px 48px rgba(196,30,36,.16)}
+  50%{box-shadow:0 24px 60px rgba(196,30,36,.34)}
+}
+
+/* ── Fix ribbon badges cut off by overflow ── */
+.pkg{overflow:visible}
+.pkg.selected{overflow:visible}
+
+/* ── Package card thumbnail entrance ── */
+.pkg-img-wrap .pkg-thumb{
+  transition:transform .45s var(--ease);
+  will-change:transform;
+}
+.pkg:hover .pkg-img-wrap .pkg-thumb{transform:scale(1.08) translateY(-5px)}
+
+/* ── 2-bottle layout: side by side, clean ── */
+.bottles-2{
+  justify-content:center;align-items:flex-end;
+  gap:6px;padding:0.75rem 0.5rem 0.25rem;
+}
+.bottles-2 .pkg-thumb{
+  width:42%;max-height:98px;flex-shrink:0;
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,.14));
+}
+.bottles-2 .pkg-thumb:nth-child(1){
+  transform:translateY(6px) rotate(-4deg);z-index:1;
+}
+.bottles-2 .pkg-thumb:nth-child(2){
+  transform:translateY(0) rotate(3deg);z-index:2;
+}
+
+/* ── 3-bottle layout: podium style ── */
+.bottles-3{
+  justify-content:center;align-items:flex-end;
+  gap:2px;padding:0.75rem 0.25rem 0.25rem;
+}
+.bottles-3 .pkg-thumb{
+  width:31%;max-height:85px;flex-shrink:0;
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,.13));
+}
+.bottles-3 .pkg-thumb:nth-child(1){
+  transform:translateY(10px) rotate(-6deg);z-index:1;
+  max-height:78px;
+}
+.bottles-3 .pkg-thumb:nth-child(2){
+  transform:translateY(0) scale(1.06);z-index:3;
+}
+.bottles-3 .pkg-thumb:nth-child(3){
+  transform:translateY(10px) rotate(6deg);z-index:1;
+  max-height:78px;
+}
+/* hover: bottles separate outward */
+.pkg:hover .bottles-2 .pkg-thumb:nth-child(1){transform:translateY(4px) rotate(-6deg) translateX(-4px)}
+.pkg:hover .bottles-2 .pkg-thumb:nth-child(2){transform:translateY(-4px) rotate(5deg) translateX(4px)}
+.pkg:hover .bottles-3 .pkg-thumb:nth-child(1){transform:translateY(8px) rotate(-8deg) translateX(-4px)}
+.pkg:hover .bottles-3 .pkg-thumb:nth-child(2){transform:translateY(-6px) scale(1.09)}
+.pkg:hover .bottles-3 .pkg-thumb:nth-child(3){transform:translateY(8px) rotate(8deg) translateX(4px)}
+
+/* ── Steps: hover lift with colored shadow ── */
+.step{transition:transform .3s var(--ease),box-shadow .3s}
+.step:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 40px rgba(196,30,36,.12);
+}
+.step:hover .step-num{
+  transform:rotate(-8deg) scale(1.15);
+}
+.step-num{transition:transform .3s var(--ease)}
+
+/* ── Journey step slide-in ── */
+.journey-step{
+  transition:transform .3s var(--ease),box-shadow .3s;
+}
+.journey-step:hover{transform:translateX(-4px);box-shadow:0 12px 32px rgba(0,0,0,.07)}
+
+/* ══════════════════════════
+   BEFORE / AFTER SECTION
+   ══════════════════════════ */
+.ba-sec{background:linear-gradient(160deg,#fff 60%,#f0faf3 100%);padding:clamp(2.5rem,6vw,4rem) 0}
+
+.ba-grid{
+  display:grid;gap:1.5rem;
+  margin-top:2rem;
+}
+@media(min-width:860px){
+  .ba-grid{grid-template-columns:1fr 1.4fr;align-items:start}
+}
+
+/* Split card */
+.ba-card{
+  display:grid;grid-template-columns:1fr auto 1fr;
+  background:#fff;border-radius:20px;
+  overflow:hidden;
+  box-shadow:0 12px 40px rgba(0,0,0,.09);
+  border:1.5px solid rgba(0,0,0,.06);
+}
+.ba-half{padding:1.5rem 1rem;display:flex;flex-direction:column;align-items:center;gap:.6rem}
+.ba-before{background:#fff5f5}
+.ba-after{background:#f0faf3}
+.ba-label{
+  font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  padding:.25rem .7rem;border-radius:99px;
+}
+.ba-before .ba-label{background:rgba(196,30,36,.12);color:var(--red)}
+.ba-after  .ba-label{background:rgba(26,147,72,.14);color:var(--green)}
+.ba-face{font-size:2.6rem;line-height:1}
+.ba-list{
+  list-style:none;padding:0;margin:0;
+  font-size:.78rem;font-weight:600;
+  display:flex;flex-direction:column;gap:.45rem;
+  width:100%;
+}
+.ba-list li{line-height:1.4}
+.ba-divider{
+  display:flex;align-items:center;justify-content:center;
+  width:32px;background:#fff;
+  position:relative;
+}
+.ba-divider::before{
+  content:"";position:absolute;top:0;bottom:0;left:50%;
+  width:2px;background:linear-gradient(to bottom,var(--red),var(--green));
+  transform:translateX(-50%);
+}
+.ba-divider span{
+  position:relative;z-index:1;
+  background:#fff;padding:.3rem 0;font-size:1.1rem;border-radius:50%;
+}
+
+/* Result testimonial cards */
+.ba-results{display:flex;flex-direction:column;gap:1rem}
+.ba-result-card{
+  background:#fff;border-radius:16px;padding:1.2rem 1.25rem;
+  box-shadow:0 8px 28px rgba(0,0,0,.07);
+  border:1.5px solid rgba(0,0,0,.05);
+  transition:transform .3s var(--ease),box-shadow .3s;
+}
+.ba-result-card:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.11)}
+.ba-result-top{
+  display:flex;align-items:center;gap:.75rem;margin-bottom:.8rem;
+}
+.ba-avatar{
+  width:42px;height:42px;border-radius:12px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+}
+.ba-result-top strong{font-size:.9rem;font-weight:800;color:var(--ink)}
+.ba-stars{color:#f59e0b;font-size:.85rem;letter-spacing:.05em;margin-top:2px}
+.ba-week-badge{
+  margin-inline-start:auto;
+  background:linear-gradient(135deg,var(--green),#7ed56f);
+  color:#fff;font-size:.68rem;font-weight:800;
+  padding:.25rem .6rem;border-radius:99px;white-space:nowrap;flex-shrink:0;
+}
+.ba-result-card > p{
+  font-size:.83rem;line-height:1.65;color:#444;
+  border-right:3px solid var(--green);padding-right:.75rem;
+  margin-bottom:.8rem;
+}
+.ba-result-stats{
+  display:flex;flex-wrap:wrap;gap:.4rem;
+}
+.ba-result-stats span{
+  background:var(--cream);border-radius:99px;
+  font-size:.72rem;font-weight:700;
+  padding:.22rem .65rem;color:var(--ink);
+}
+
+/* Timeline */
+.ba-timeline{
+  margin-top:2.5rem;
+  background:#fff;border-radius:20px;padding:1.75rem 2rem;
+  box-shadow:0 8px 32px rgba(0,0,0,.07);
+  border:1.5px solid rgba(0,0,0,.05);
+}
+.ba-tl-head{
+  text-align:center;font-weight:900;font-size:1.05rem;
+  margin-bottom:1.75rem;color:var(--ink);
+}
+.ba-tl-track{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  gap:.5rem;overflow-x:auto;padding-bottom:.5rem;
+}
+.ba-tl-step{display:flex;flex-direction:column;align-items:center;gap:.5rem;flex:1;min-width:90px}
+.ba-tl-dot{
+  width:44px;height:44px;border-radius:50%;color:#fff;font-weight:900;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 14px rgba(0,0,0,.18);flex-shrink:0;
+  animation:dotPulse 2s ease-in-out infinite;
+}
+.ba-tl-step:last-child .ba-tl-dot{animation-delay:.6s}
+.ba-tl-label{text-align:center;font-size:.78rem;font-weight:700;color:var(--ink);line-height:1.5}
+.ba-tl-label small{font-weight:500;color:var(--muted)}
+.ba-tl-line{flex:1;height:2px;background:linear-gradient(90deg,var(--red),var(--green));
+  margin-top:22px;border-radius:2px;min-width:20px;}
 </style>
-
-<!-- TikTok Pixel Code -->
-<script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject = t;
-  var ttq = w[t] = w[t] || [];
-  ttq.methods = ["page", "track", "identify", "instances", "debug", "on", "off", "once", "ready", "alias", "group", "enableCookie", "disableCookie"];
-  ttq.setAndDefer = function (t, e) {
-    t[e] = function () {
-      t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
-    };
-  };
-  for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
-  ttq.instance = function (t) {
-    var e = ttq._i[t] || [];
-    for (var n = 0; n < ttq.methods.length; n++) ttq.setAndDefer(e, ttq.methods[n]);
-    return e;
-  };
-  ttq.load = function (e, n) {
-    var i = "https://analytics.tiktok.com/i18n/pixel/events.js";
-    ttq._i = ttq._i || {};
-    ttq._i[e] = [];
-    ttq._i[e]._u = i;
-    ttq._t = ttq._t || {};
-    ttq._t[e] = +new Date;
-    ttq._o = ttq._o || {};
-    ttq._o[e] = n || {};
-    var o = document.createElement("script");
-    o.type = "text/javascript";
-    o.async = true;
-    o.src = i + "?sdkid=" + e + "&lib=" + t;
-    var a = document.getElementsByTagName("script")[0];
-    a.parentNode.insertBefore(o, a);
-  };
-
-  ttq.load("D1MFAIJC77U87UH7LNJ0");
-  ttq.page();
-}(window, document, "ttq");
-</script>
-<!-- End TikTok Pixel Code -->
-
 </head>
 <body>
 
@@ -871,15 +1300,15 @@ padding:.3rem .75rem;border-radius:6px;margin-bottom:.65rem;
 <header>
 <div class="hdr-inner">
 <a href="#" class="logo" aria-label="فيتجوم">
-<img src="fitgum-logo.svg" alt="فيتجوم خل التفاح" width="160" height="44">
+<img src="assets/fitgum-logo.svg" alt="فيتجوم خل التفاح" width="160" height="44">
 </a>
 <nav class="hdr-nav" aria-label="تنقل">
 <a href="#packages">العروض</a>
 <a href="#before-after">قبل وبعد</a>
 <a href="#benefits">الفوائد</a>
-<a href="#checkout">الطلب</a>
+<a href="checkout.html?qty=2">الطلب</a>
 </nav>
-<a href="#checkout" class="hdr-cta"><i class="fas fa-bag-shopping"></i> اطلب الآن</a>
+<a href="checkout.html?qty=2" class="hdr-cta"><i class="fas fa-bag-shopping"></i> اطلب الآن</a>
 </div>
 </header>
 
@@ -911,7 +1340,7 @@ padding:.3rem .75rem;border-radius:6px;margin-bottom:.65rem;
 <span class="badge-pill"><i class="fas fa-certificate"></i> قوة إضافية</span>
 </div>
 <div class="hero-actions">
-<a href="#checkout" class="btn btn-primary btn-lg"><i class="fas fa-cart-plus"></i> اطلب الآن</a>
+<a href="checkout.html?qty=2" class="btn btn-primary btn-lg"><i class="fas fa-cart-plus"></i> اطلب الآن</a>
 <a href="#packages" class="btn btn-ghost"><i class="fas fa-tags"></i> العروض والتوفير</a>
 </div>
 <div class="hero-social">
@@ -923,7 +1352,7 @@ padding:.3rem .75rem;border-radius:6px;margin-bottom:.65rem;
 </div>
 <div class="hero-visual reveal">
 <div class="hero-glow" aria-hidden="true"></div>
-<img class="hero-img" src="fitgum-product.png" alt="فيتجوم علكة خل التفاح" width="480" height="640">
+<img class="hero-img" src="assets/fitgum-product.png" alt="فيتجوم علكة خل التفاح" width="480" height="640">
 <div class="float-card a"><i class="fas fa-check-circle"></i> <strong>60</strong> علكة عضوية</div>
 <div class="float-card b"><i class="fas fa-shipping-fast"></i> <strong>توصيل</strong> عُمان</div>
 </div>
@@ -954,7 +1383,7 @@ padding:.3rem .75rem;border-radius:6px;margin-bottom:.65rem;
 <div class="offer-price">27 <small>ر.ع</small></div>
 <div class="offer-copy">باقة علبتين — الأكثر طلباً · وفّر 15 ر.ع · الدفع عند الاستلام</div>
 </div>
-<a href="#checkout" class="btn btn-lg"><i class="fas fa-bolt"></i> احجز طلبك الآن</a>
+<a href="checkout.html?qty=2" class="btn btn-lg"><i class="fas fa-bolt"></i> احجز طلبك الآن</a>
 </div>
 </section>
 
@@ -966,7 +1395,7 @@ padding:.3rem .75rem;border-radius:6px;margin-bottom:.65rem;
 <div class="wrap">
 <div class="crv-grid reveal">
 <div class="crv-product">
-<img src="fitgum-product.png" alt="فيتجوم علكة خل التفاح" loading="lazy">
+<img src="assets/fitgum-product.png" alt="فيتجوم علكة خل التفاح" loading="lazy">
 </div>
 <div class="crv-copy">
 <h2 class="crv-brand-name">فيتجوم</h2>
@@ -990,7 +1419,7 @@ padding:.3rem .75rem;border-radius:6px;margin-bottom:.65rem;
 <p>عملية واضحة — بدون دفع مسبق</p>
 </div>
 <div class="journey-product reveal">
-<img src="fitgum-product.png" alt="فيتجوم — المنتج الأصلي" loading="lazy">
+<img src="assets/fitgum-product.png" alt="فيتجوم — المنتج الأصلي" loading="lazy">
 </div>
 <div class="journey-flow reveal">
 <div class="journey-step highlight">
@@ -1023,7 +1452,7 @@ padding:.3rem .75rem;border-radius:6px;margin-bottom:.65rem;
 </div>
 </div>
 <div class="journey-cta reveal">
-<a href="#checkout" class="btn btn-primary btn-lg"><i class="fas fa-cart-plus"></i> اطلب الآن — من 21 ر.ع</a>
+<a href="checkout.html?qty=2" class="btn btn-primary btn-lg"><i class="fas fa-cart-plus"></i> اطلب الآن — من 21 ر.ع</a>
 </div>
 </div>
 </section>
@@ -1082,7 +1511,7 @@ padding:.3rem .75rem;border-radius:6px;margin-bottom:.65rem;
 </ul>
 </div>
 <div class="specs-img-wrap">
-<img src="fitgum-product.png" alt="60 علكة عضوية" loading="lazy">
+<img src="assets/fitgum-product.png" alt="60 علكة عضوية" loading="lazy">
 </div>
 </div>
 </div>
@@ -1118,38 +1547,53 @@ padding:.3rem .75rem;border-radius:6px;margin-bottom:.65rem;
 <p>العروض هنا — اضغط الباقة وعَبّي الطلب تحتها مباشرة</p>
 </div>
 <div class="pricing-product reveal">
-<img src="fitgum-product.png" alt="فيتجوم علكة خل التفاح" loading="lazy">
+<img src="assets/fitgum-product.png" alt="فيتجوم علكة خل التفاح" loading="lazy">
 <p>نفس المنتج الأصلي — اختر الكمية اللي تناسبك</p>
 </div>
 <div class="packages" aria-label="اختر باقتك للطلب">
 <div class="pkg" data-qty="1" data-price="21" tabindex="0" role="button" aria-label="علبة واحدة — اذهب للطلب">
-<img class="pkg-thumb" src="fitgum-product.png" alt="علبة واحدة" loading="lazy">
+<div class="pkg-img-wrap">
+  <img class="pkg-thumb" src="assets/fitgum-product.png" alt="علبة واحدة" loading="lazy">
+  <span class="qty-tag">×1</span>
+</div>
 <div class="pkg-qty">باقة البداية</div>
 <h3>علبة واحدة</h3>
 <div class="pkg-price">21 <small>ر.ع</small></div>
 <div class="pkg-save">&nbsp;</div>
 <div class="pkg-per">21 ر.ع / علبة</div>
 <div class="pkg-scarcity"><i class="fas fa-fire"></i> متوفر</div>
+<div class="stock-bar-wrap"><div class="stock-bar" style="width:82%"></div></div>
 <span class="pkg-cta"><i class="fas fa-arrow-left"></i> مباشرة للطلب</span>
 </div>
 <div class="pkg popular selected" data-qty="2" data-price="27" tabindex="0" role="button" aria-label="علبتين — اذهب للطلب">
-<img class="pkg-thumb" src="fitgum-product.png" alt="علبتين" loading="lazy">
+<div class="pkg-img-wrap bottles-2">
+  <img class="pkg-thumb" src="assets/fitgum-product.png" alt="علبة 1" loading="lazy">
+  <img class="pkg-thumb" src="assets/fitgum-product.png" alt="علبة 2" loading="lazy">
+  <span class="qty-tag">×2</span>
+</div>
 <div class="pkg-qty">الأكثر طلباً</div>
 <h3>علبتين</h3>
 <div class="pkg-price">27 <small>ر.ع</small> <span class="pkg-old">42</span></div>
 <div class="pkg-save">وفّر 15 ر.ع — الأفضل للبداية</div>
 <div class="pkg-per">13.5 ر.ع / علبة</div>
 <div class="pkg-scarcity"><i class="fas fa-fire"></i> <span class="pkg-stock">12</span> متبقي اليوم</div>
+<div class="stock-bar-wrap"><div class="stock-bar" style="width:48%"></div></div>
 <span class="pkg-cta"><i class="fas fa-arrow-left"></i> مباشرة للطلب</span>
 </div>
 <div class="pkg best" data-qty="3" data-price="31" tabindex="0" role="button" aria-label="3 علبات — اذهب للطلب">
-<img class="pkg-thumb" src="fitgum-product.png" alt="3 علبات" loading="lazy">
+<div class="pkg-img-wrap bottles-3">
+  <img class="pkg-thumb" src="assets/fitgum-product.png" alt="علبة 1" loading="lazy">
+  <img class="pkg-thumb" src="assets/fitgum-product.png" alt="علبة 2" loading="lazy">
+  <img class="pkg-thumb" src="assets/fitgum-product.png" alt="علبة 3" loading="lazy">
+  <span class="qty-tag">×3</span>
+</div>
 <div class="pkg-qty">أقصى توفير</div>
 <h3>3 علبات</h3>
 <div class="pkg-price">31 <small>ر.ع</small> <span class="pkg-old">63</span></div>
 <div class="pkg-save">وفّر 32 ر.ع — أقل سعر للعلبة</div>
 <div class="pkg-per">10.3 ر.ع / علبة</div>
 <div class="pkg-scarcity"><i class="fas fa-fire"></i> <span class="pkg-stock">8</span> متبقي اليوم</div>
+<div class="stock-bar-wrap"><div class="stock-bar" style="width:28%;background:linear-gradient(90deg,var(--red),#ff6b6b)"></div></div>
 <span class="pkg-cta"><i class="fas fa-arrow-left"></i> مباشرة للطلب</span>
 </div>
 </div>
@@ -1218,7 +1662,7 @@ padding:.3rem .75rem;border-radius:6px;margin-bottom:.65rem;
 </form>
 </div>
 <aside class="order-side">
-<img src="fitgum-product.png" alt="" loading="lazy">
+<img src="assets/fitgum-product.png" alt="" loading="lazy">
 <span class="brand-ribbon">فيتجوم</span>
 <span class="brand-xs">قوة إضافية</span>
 <span class="brand-xl" style="font-size:1.75rem">خل التفاح</span>
@@ -1257,6 +1701,130 @@ padding:.3rem .75rem;border-radius:6px;margin-bottom:.65rem;
 <p>نوصل لبابك في عُمان وتدفع كاش عند الاستلام فقط.</p>
 </div>
 </div>
+</div>
+</section>
+
+<!-- ══════════════════════════════════════════
+     BEFORE / AFTER SECTION
+     ══════════════════════════════════════════ -->
+<section class="ba-sec" id="before-after">
+<div class="wrap">
+<div class="sec-head reveal">
+  <h2>قبل وبعد <span style="color:var(--green)">فيتجوم</span></h2>
+  <p>نتائج حقيقية شاركها عملاؤنا من عُمان</p>
+</div>
+
+<!-- Transformation cards row -->
+<div class="ba-grid">
+
+  <!-- Card 1 -->
+  <article class="ba-card reveal">
+    <div class="ba-half ba-before">
+      <div class="ba-label">قبل</div>
+      <div class="ba-face">😩</div>
+      <ul class="ba-list">
+        <li>🔴 تعب وثقل بعد الأكل</li>
+        <li>🔴 هضم بطيء وانتفاخ</li>
+        <li>🔴 شهية زايدة طول النهار</li>
+        <li>🔴 تعب من شرب الخل</li>
+      </ul>
+    </div>
+    <div class="ba-divider"><span>⚡</span></div>
+    <div class="ba-half ba-after">
+      <div class="ba-label">بعد 30 يوم</div>
+      <div class="ba-face">🤩</div>
+      <ul class="ba-list">
+        <li>🟢 طاقة ونشاط من الصباح</li>
+        <li>🟢 هضم أخف وأريح</li>
+        <li>🟢 تحكم أفضل بالشهية</li>
+        <li>🟢 روتين يومي سهل ولذيذ</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- Result testimonial cards -->
+  <div class="ba-results">
+
+    <div class="ba-result-card reveal">
+      <div class="ba-result-top">
+        <div class="ba-avatar" style="background:#fde8ea">🧕</div>
+        <div>
+          <strong>هند · مسقط</strong>
+          <div class="ba-stars">★★★★★</div>
+        </div>
+        <div class="ba-week-badge">الأسبوع 4</div>
+      </div>
+      <p>«بعد الباقة الأولى حسيت بفرق كبير في الهضم. الانتفاخ راح وصحيت نشيطة. ما توقعت النتيجة بهالسرعة»</p>
+      <div class="ba-result-stats">
+        <span>⚖️ خسرت 3كغ</span>
+        <span>✨ بشرة أنضف</span>
+        <span>⚡ طاقة أكثر</span>
+      </div>
+    </div>
+
+    <div class="ba-result-card reveal">
+      <div class="ba-result-top">
+        <div class="ba-avatar" style="background:#e8f5e9">👨</div>
+        <div>
+          <strong>سالم · صلالة</strong>
+          <div class="ba-stars">★★★★★</div>
+        </div>
+        <div class="ba-week-badge">الأسبوع 6</div>
+      </div>
+      <p>«كنت أشرب الخل السائل وما عشت فيه. فيتجوم نفس الفائدة بس بطعم ممتاز. فرق في الوزن واضح»</p>
+      <div class="ba-result-stats">
+        <span>⚖️ خسر 5كغ</span>
+        <span>🔥 حرق أفضل</span>
+        <span>😴 نوم أحسن</span>
+      </div>
+    </div>
+
+    <div class="ba-result-card reveal">
+      <div class="ba-result-top">
+        <div class="ba-avatar" style="background:#fff8e1">👩</div>
+        <div>
+          <strong>مريم · نزوى</strong>
+          <div class="ba-stars">★★★★★</div>
+        </div>
+        <div class="ba-week-badge">الأسبوع 8</div>
+      </div>
+      <p>«الباقة الثلاثية وفرت وقت وفلوس. النتيجة تفوق التوقعات — أنصح كل بنات العيلة فيتجوم»</p>
+      <div class="ba-result-stats">
+        <span>⚖️ خسرت 6كغ</span>
+        <span>✨ بشرة مشرقة</span>
+        <span>💪 جسم أخف</span>
+      </div>
+    </div>
+
+  </div><!-- /ba-results -->
+</div><!-- /ba-grid -->
+
+<!-- Progress timeline -->
+<div class="ba-timeline reveal">
+  <div class="ba-tl-head">رحلتك مع فيتجوم — أسبوع بأسبوع</div>
+  <div class="ba-tl-track">
+    <div class="ba-tl-step">
+      <div class="ba-tl-dot" style="background:var(--red)">1</div>
+      <div class="ba-tl-label">الأسبوع الأول<br><small>طاقة أكثر وهضم أخف</small></div>
+    </div>
+    <div class="ba-tl-line"></div>
+    <div class="ba-tl-step">
+      <div class="ba-tl-dot" style="background:#e67e22">2</div>
+      <div class="ba-tl-label">الأسبوع الثاني<br><small>شهية منضبطة وانتفاخ أقل</small></div>
+    </div>
+    <div class="ba-tl-line"></div>
+    <div class="ba-tl-step">
+      <div class="ba-tl-dot" style="background:#27ae60">3</div>
+      <div class="ba-tl-label">الأسبوع الثالث<br><small>بشرة أنضف وإحساس بفرق</small></div>
+    </div>
+    <div class="ba-tl-line"></div>
+    <div class="ba-tl-step">
+      <div class="ba-tl-dot" style="background:var(--green)">4+</div>
+      <div class="ba-tl-label">الشهر الأول<br><small>وزن أقل ونتيجة واضحة ✅</small></div>
+    </div>
+  </div>
+</div>
+
 </div>
 </section>
 
@@ -1325,26 +1893,197 @@ padding:.3rem .75rem;border-radius:6px;margin-bottom:.65rem;
 </div>
 </footer>
 
+<!-- Live purchase notification -->
+<div class="live-notif" id="live-notif" role="alert" aria-live="polite">
+  <div class="notif-icon"></div>
+  <div>
+    <strong id="notif-name">أحمد من مسقط</strong>
+    <span id="notif-text">طلب للتو علبتين فيتجوم <span class="notif-dot"></span></span>
+  </div>
+</div>
+
 <div class="sticky-cta">
 <div class="sticky-info">
 <strong id="sticky-price">27 ر.ع</strong><br>
 <span id="sticky-label">علبتين · عند الاستلام</span>
 </div>
-<a href="#checkout" class="btn btn-primary"><i class="fas fa-cart-plus"></i> اطلب الآن</a>
+<a href="checkout.html?qty=2" class="btn btn-primary"><i class="fas fa-cart-plus"></i> اطلب الآن</a>
 </div>
 
-<a href="#checkout" class="float-order" id="float-order" aria-label="اطلب الآن">
+<a href="checkout.html?qty=2" class="float-order" id="float-order" aria-label="اطلب الآن">
 <span class="btn btn-primary"><i class="fas fa-bag-shopping"></i> اطلب الآن</span>
 </a>
 
+<script src="fitgum-config.js"></script>
+<script src="tiktok-pixel.js"></script>
 <script>
-const DEFAULT_SHEET_URL = "https://script.google.com/macros/s/AKfycbyYwJnMo1pyOauCBsSun3lO0dbkdLw6VS8eZYdnLkAmdkEDMSkwGKvtH5STpiWougHJ/exec";
+/* ================================================
+   🚀 FITGUM MOTION ENGINE
+   ================================================ */
+
+/* 1 ── Hero product 3D tilt */
+(function(){
+  const visual = document.querySelector('.hero-visual');
+  const img    = document.querySelector('.hero-img');
+  if(!visual||!img) return;
+  visual.addEventListener('mousemove', e => {
+    const r = visual.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width  - .5) * 18;
+    const y = ((e.clientY - r.top)  / r.height - .5) * 14;
+    img.style.transform = `perspective(900px) rotateY(${x}deg) rotateX(${-y}deg) scale(1.04)`;
+  });
+  visual.addEventListener('mouseleave', () => {
+    img.style.transform = '';
+  });
+})();
+
+/* 2 ── Proof bar animated counters */
+(function(){
+  const items = [
+    {selector:'.proof-item:nth-child(1) strong', target:2400, suffix:'+', prefix:''},
+    {selector:'.proof-item:nth-child(2) strong', target:4.9,  suffix:'/5', prefix:'', decimals:1},
+    {selector:'.proof-item:nth-child(3) strong', target:48,   suffix:'',  prefix:''},
+    {selector:'.proof-item:nth-child(4) strong', target:100,  suffix:'%', prefix:''},
+  ];
+  const bar = document.querySelector('.proof-bar');
+  if(!bar) return;
+
+  function animCount(el, target, suffix, prefix, decimals){
+    let start = null;
+    const dur = 1800;
+    const step = ts => {
+      if(!start) start = ts;
+      const p = Math.min((ts-start)/dur, 1);
+      const ease = 1 - Math.pow(1-p, 3);
+      const val  = decimals ? (ease*target).toFixed(decimals) : Math.floor(ease*target).toLocaleString('en');
+      el.textContent = prefix + val + suffix;
+      if(p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    if(entries[0].isIntersecting){
+      items.forEach(({selector,target,suffix,prefix,decimals}) => {
+        const el = document.querySelector(selector);
+        if(el) animCount(el, target, suffix||'', prefix||'', decimals);
+      });
+      obs.disconnect();
+    }
+  }, {threshold:.5});
+  obs.observe(bar);
+})();
+
+/* 3 ── Floating hero micro-dots */
+(function(){
+  const hero = document.querySelector('.hero');
+  if(!hero) return;
+  const colors = ['rgba(196,30,36,.25)','rgba(26,147,72,.2)','rgba(240,180,41,.22)'];
+  for(let i=0; i<14; i++){
+    const d = document.createElement('span');
+    d.className = 'hero-dot';
+    const size = Math.random()*8+4;
+    d.style.cssText = `
+      width:${size}px;height:${size}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      left:${Math.random()*90+5}%;
+      bottom:${Math.random()*20}%;
+      animation-duration:${Math.random()*5+5}s;
+      animation-delay:${Math.random()*6}s;
+    `;
+    hero.appendChild(d);
+  }
+})();
+
+/* 4 ── Live purchase notifications */
+(function(){
+  const notif = document.getElementById('live-notif');
+  const nameEl = document.getElementById('notif-name');
+  const textEl = document.getElementById('notif-text');
+  if(!notif||!nameEl||!textEl) return;
+
+  const orders = [
+    {name:'أحمد من مسقط',   pkg:'علبتين فيتجوم'},
+    {name:'فاطمة من صحار',  pkg:'3 علبات فيتجوم'},
+    {name:'سالم من صلالة',  pkg:'علبة فيتجوم'},
+    {name:'مريم من نزوى',   pkg:'علبتين فيتجوم'},
+    {name:'خالد من البريمي',pkg:'3 علبات فيتجوم'},
+    {name:'نورة من مسقط',   pkg:'علبتين فيتجوم'},
+    {name:'يوسف من صور',    pkg:'علبة فيتجوم'},
+    {name:'هند من بوشر',    pkg:'3 علبات فيتجوم'},
+  ];
+  let idx = 0;
+
+  function showNotif(){
+    const o = orders[idx % orders.length]; idx++;
+    nameEl.textContent = o.name;
+    textEl.innerHTML   = `طلب للتو ${o.pkg} <span class="notif-dot"></span>`;
+    notif.classList.add('show');
+    setTimeout(() => notif.classList.remove('show'), 4000);
+  }
+
+  setTimeout(showNotif, 4000);
+  setInterval(showNotif, 14000);
+})();
+
+/* 5 ── Magnetic buttons */
+(function(){
+  document.querySelectorAll('.btn-primary, .btn-ghost').forEach(btn => {
+    btn.addEventListener('mousemove', e => {
+      const r = btn.getBoundingClientRect();
+      const x = (e.clientX - r.left - r.width/2)  * .22;
+      const y = (e.clientY - r.top  - r.height/2) * .22;
+      btn.style.transform = `translate(${x}px,${y}px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+    });
+  });
+})();
+
+/* 6 ── Stock bar depletion over time */
+(function(){
+  const bars = document.querySelectorAll('.stock-bar');
+  bars.forEach(bar => {
+    const pct = parseFloat(bar.style.width);
+    bar.style.width = '100%';
+    setTimeout(() => { bar.style.width = pct + '%'; }, 800);
+  });
+})();
+
+/* 7 ── Staggered grid cards reveal */
+(function(){
+  document.querySelectorAll('.benefits-grid .benefit-card, .reviews-grid .review, .steps .step').forEach((el,i) => {
+    el.style.transitionDelay = (i * 0.08) + 's';
+  });
+})();
+
+/* 8 ── Universal scroll reveal */
+(function(){
+  const targets = [
+    '.benefit-card','.review','.step','.journey-step','.spec-card',
+    '.pkg','.section-heading','.crv-product','.faq-item'
+  ];
+  document.querySelectorAll(targets.join(',')).forEach(el => {
+    el.classList.add('reveal-fast');
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if(e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+
+  document.querySelectorAll('.reveal-fast').forEach(el => obs.observe(el));
+})();
+</script>
+<script>
 function getSheetUrl() {
   try {
     const s = (localStorage.getItem("fitgum_sheet_url") || "").trim();
     if (s.indexOf("script.google") > -1 && s.indexOf("/exec") > -1) return s;
   } catch (e) {}
-  return DEFAULT_SHEET_URL;
+  return window.FITGUM_CONFIG.SHEET_URL;
 }
 function isSheetLinked() {
   const u = getSheetUrl();
@@ -1394,14 +2133,22 @@ function updateSelection(qty) {
 
 function goCheckout(qty) {
   updateSelection(qty);
-  const target = document.getElementById("checkout");
-  if (target) {
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
-    const box = document.getElementById("checkout-form");
-    if (box) {
-      box.classList.add("checkout-flash");
-      setTimeout(() => box.classList.remove("checkout-flash"), 1300);
-    }
+  const price = PACKAGES[qty] && PACKAGES[qty].price;
+
+  /* ── TikTok: AddToCart → then InitiateCheckout ── */
+  if (window.FGPixel) {
+    window.FGPixel.addToCart(qty, price);
+    /* small delay so AddToCart fires before page unloads */
+    setTimeout(function () {
+      /* save for checkout.html pickup */
+      try { localStorage.setItem('fg_qty', qty); localStorage.setItem('fg_price', price); } catch(e) {}
+      window.FGPixel.initiateCheckout(qty, price);
+      setTimeout(function () {
+        window.location.href = "checkout.html?qty=" + qty + "&price=" + price;
+      }, 350);
+    }, 250);
+  } else {
+    window.location.href = "checkout.html?qty=" + qty + "&price=" + price;
   }
 }
 
@@ -1498,18 +2245,19 @@ formEl.addEventListener("submit", async (e) => {
   }
 
   if (!isSheetLinked()) {
-    showAlert("error", "رابط Google Sheet غير موجود. تواصل مع صاحب المتجر.");
+    showAlert("error", "لم يتم ربط الشيت. افتح checkout.html والصق رابط /exec.");
+    window.location.href = "checkout.html?qty=" + selectedQty;
     return;
   }
 
   const p = PACKAGES[selectedQty];
   const payload = {
-    name: name,
-    phone: phone,
-    city: city,
-    address: address,
-    quantity: selectedQty,
+    name,
+    phone,
+    city,
+    address,
     packageLabel: p.label,
+    packageQty: selectedQty,
     price: p.price,
     source: "fitgum-oman-lp"
   };
@@ -1519,25 +2267,13 @@ formEl.addEventListener("submit", async (e) => {
   submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
 
   try {
-    await fetch(getSheetUrl(), {
+    const res = await fetch(getSheetUrl(), {
       method: "POST",
-      mode: "no-cors",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
       body: JSON.stringify(payload)
     });
-
-    try {
-      if (typeof fbq === "function") fbq("track", "Lead", { value: p.price, currency: "OMR" });
-      if (typeof ttq !== "undefined") {
-        ttq.track("CompleteRegistration", {
-          content_type: "product",
-          content_name: "Fitgum Apple Cider Gummies",
-          quantity: selectedQty,
-          value: p.price,
-          currency: "OMR"
-        });
-      }
-    } catch (pixelError) {}
+    const data = await res.json();
+    if (!data.ok) throw new Error(data.error || "فشل الحفظ");
 
     const thanks = new URL("thank-you.html", location.href);
     thanks.searchParams.set("name", name);
@@ -1545,10 +2281,10 @@ formEl.addEventListener("submit", async (e) => {
     thanks.searchParams.set("city", city);
     thanks.searchParams.set("package", p.label);
     thanks.searchParams.set("price", String(p.price));
-    window.location.href = thanks.toString();
+    location.href = thanks.toString();
     return;
   } catch (err) {
-    showAlert("error", "تعذّر إرسال الطلب. تأكد من الإنترنت وحاول مرة أخرى.");
+    showAlert("error", "تعذّر إرسال الطلب. تحقق من رابط Google Sheet وحاول مرة أخرى.");
     console.error(err);
   } finally {
     submitBtn.disabled = false;

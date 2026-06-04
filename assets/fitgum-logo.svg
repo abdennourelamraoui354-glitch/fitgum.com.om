@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 76" role="img" aria-label="فيتجوم">
+  <defs>
+    <linearGradient id="ribbon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a9348"/>
+      <stop offset="100%" stop-color="#2fb85a"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="260" height="30" rx="6" fill="url(#ribbon)"/>
+  <text x="130" y="21" text-anchor="middle" fill="#fff" font-family="Tahoma, Arial, sans-serif" font-size="17" font-weight="800">فيتجوم</text>
+  <text x="130" y="50" text-anchor="middle" fill="#c41e24" font-family="Tahoma, Arial, sans-serif" font-size="20" font-weight="900">خل التفاح</text>
+  <text x="130" y="68" text-anchor="middle" fill="#1a9348" font-family="Tahoma, Arial, sans-serif" font-size="12" font-weight="700">علكة خل التفاح</text>
+</svg>
