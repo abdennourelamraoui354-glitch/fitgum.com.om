@@ -26,8 +26,8 @@ function getSheet_() {
 
   /* Ensure header row exists */
   if (sheet.getLastRow() === 0) {
-    sheet.appendRow(["date","nom","Phone","City","Address","Quantity","Price","Status"]);
-    sheet.getRange(1,1,1,8).setFontWeight("bold").setBackground("#cc0000").setFontColor("#ffffff");
+    sheet.appendRow(["date","nom","Phone","City","Address","Quantity","Price","Status","SKU"]);
+    sheet.getRange(1,1,1,9).setFontWeight("bold").setBackground("#cc0000").setFontColor("#ffffff");
     sheet.setFrozenRows(1);
   }
   return sheet;
@@ -50,7 +50,8 @@ function doPost(e) {
       data.address || "",               // Address
       data.packageQty   || "",          // Quantity
       data.price        || "",          // Price
-      (data.packageLabel || "") + " — " + (data.source || "fitgum")  // Status
+      (data.packageLabel || "") + " — COD",  // Status
+      data.sku     || ""                // SKU
     ]);
 
     return json_({ ok: true });
