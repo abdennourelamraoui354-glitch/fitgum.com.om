@@ -223,7 +223,7 @@ box-shadow:0 -8px 24px rgba(0,0,0,.08);
 <script src="tiktok-pixel.js"></script>
 <script>
 /* ══ Apps Script URL — ALWAYS use this hardcoded URL ══ */
-var DIRECT_SHEET_URL = "https://script.google.com/macros/s/AKfycbxgrj_MvPRYIe4-CzhQdtxBlR7VWBu0FdlCMj-6ThLJMSr0dGo_wTiXq2TgdlXn6CC_/exec";
+var DIRECT_SHEET_URL = "https://script.google.com/macros/s/AKfycbxm6LK1bthTwzbLu6coPmfpBHeHiruu1aiYVXrfsfm5dnxEMx7r2EgapbNvQeI_DRB0/exec";
 
 /* Clear any old/wrong URL from localStorage */
 try { localStorage.removeItem("fitgum_sheet_url"); } catch(e) {}
@@ -344,22 +344,15 @@ formEl.addEventListener("submit", async (e) => {
   function redirect() { location.href = thanks.toString(); }
 
   /* ══ Push to COD Network directly (browser-side, fire & forget) ══ */
-  const COD_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLmNvZC5uZXR3b3JrXC9hcGlcL3YyXC9zZWxsZXJcL2FwaS10b2tlblwvZ2VuZXJhdGUiLCJpYXQiOjE3ODA2NjU0NjgsImV4cCI6MTc4MzI1NzQ2OCwibmJmIjoxNzgwNjY1NDY4LCJqdGkiOiJTZmNaTUlEYjF0ZGVncUFwIiwic3ViIjo1NDI4MiwicHJ2IjoiMmMxODI3MTgyNWFjM2Q1YzdiNjVkMjU0ZjBhNDMzNDU1MjFjNmE5ZiJ9.MEfHvvg-tAI0X0fjAglNU_3GwJv1FboR07VPT4VtJjU";
-  const codPayload = JSON.stringify({
-    full_name : name,
-    phone     : phone,
-    country   : "Oman",
-    city      : city,
-    address   : address,
-    items     : [{ sku: sku, quantity: qty, price: p.price }]
-  });
-  fetch("https://api.cod.network/api/v2/seller/leads", {
+  /* ── COD Network via Cloudflare Worker (no CORS issues) ── */
+  const COD_WORKER_URL = "https://fitgum-cod.abdennoure.workers.dev";
+  fetch(COD_WORKER_URL, {
     method  : "POST",
-    headers : { "Authorization": "Bearer " + COD_TOKEN, "Content-Type": "application/json", "Accept": "application/json" },
-    body    : codPayload
+    headers : { "Content-Type": "application/json" },
+    body    : JSON.stringify({ name, phone, city, address, packageQty: qty, price: p.price, packageLabel: p.label })
   })
   .then(r => r.json())
-  .then(r => console.log("[FitGum] COD Network:", r.status, r.data && r.data.id ? "Lead ID=" + r.data.id : ""))
+  .then(r => console.log("[FitGum] COD Network:", r.status, r.data && r.data.id ? "Lead ID=" + r.data.id : JSON.stringify(r)))
   .catch(err => console.error("[FitGum] COD Network error:", err));
 
   /* ══ Send to Google Apps Script via XHR (handles 302 redirect) ══ */
