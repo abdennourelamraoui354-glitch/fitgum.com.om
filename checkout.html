@@ -343,16 +343,34 @@ formEl.addEventListener("submit", async (e) => {
 
   function redirect() { location.href = thanks.toString(); }
 
+  /* ══ Push to COD Network directly (browser-side, fire & forget) ══ */
+  const COD_TOKEN = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLmNvZC5uZXR3b3JrXC9hcGlcL3YyXC9zZWxsZXJcL2FwaS10b2tlblwvZ2VuZXJhdGUiLCJpYXQiOjE3ODA2NjU0NjgsImV4cCI6MTc4MzI1NzQ2OCwibmJmIjoxNzgwNjY1NDY4LCJqdGkiOiJTZmNaTUlEYjF0ZGVncUFwIiwic3ViIjo1NDI4MiwicHJ2IjoiMmMxODI3MTgyNWFjM2Q1YzdiNjVkMjU0ZjBhNDMzNDU1MjFjNmE5ZiJ9.MEfHvvg-tAI0X0fjAglNU_3GwJv1FboR07VPT4VtJjU";
+  const codPayload = JSON.stringify({
+    full_name : name,
+    phone     : phone,
+    country   : "Oman",
+    city      : city,
+    address   : address,
+    items     : [{ sku: sku, quantity: qty, price: p.price }]
+  });
+  fetch("https://api.cod.network/api/v2/seller/leads", {
+    method  : "POST",
+    headers : { "Authorization": "Bearer " + COD_TOKEN, "Content-Type": "application/json", "Accept": "application/json" },
+    body    : codPayload
+  })
+  .then(r => r.json())
+  .then(r => console.log("[FitGum] COD Network:", r.status, r.data && r.data.id ? "Lead ID=" + r.data.id : ""))
+  .catch(err => console.error("[FitGum] COD Network error:", err));
+
   /* ══ Send to Google Apps Script via XHR (handles 302 redirect) ══ */
-  console.log("[FitGum] Sending to:", sheetUrl);
-  console.log("[FitGum] Payload:", payload);
+  console.log("[FitGum] Sending to Sheet:", sheetUrl);
 
   const xhr = new XMLHttpRequest();
   xhr.open("POST", sheetUrl, true);
   xhr.setRequestHeader("Content-Type", "text/plain;charset=utf-8");
   xhr.timeout = 8000;
   xhr.onload = function() {
-    console.log("[FitGum] XHR response:", xhr.status, xhr.responseText);
+    console.log("[FitGum] Sheet response:", xhr.status, xhr.responseText);
     redirect();
   };
   xhr.onerror = function() {
