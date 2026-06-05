@@ -2135,18 +2135,14 @@ function goCheckout(qty) {
   updateSelection(qty);
   const price = PACKAGES[qty] && PACKAGES[qty].price;
 
-  /* ── TikTok: AddToCart → then InitiateCheckout ── */
+  /* ── TikTok: AddToCart only — InitiateCheckout fires on checkout form submit ── */
+  try { localStorage.setItem('fg_qty', qty); localStorage.setItem('fg_price', price); } catch(e) {}
   if (window.FGPixel) {
     window.FGPixel.addToCart(qty, price);
-    /* small delay so AddToCart fires before page unloads */
+    /* Small delay to ensure AddToCart fires before unload */
     setTimeout(function () {
-      /* save for checkout.html pickup */
-      try { localStorage.setItem('fg_qty', qty); localStorage.setItem('fg_price', price); } catch(e) {}
-      window.FGPixel.initiateCheckout(qty, price);
-      setTimeout(function () {
-        window.location.href = "checkout.html?qty=" + qty + "&price=" + price;
-      }, 350);
-    }, 250);
+      window.location.href = "checkout.html?qty=" + qty + "&price=" + price;
+    }, 300);
   } else {
     window.location.href = "checkout.html?qty=" + qty + "&price=" + price;
   }
