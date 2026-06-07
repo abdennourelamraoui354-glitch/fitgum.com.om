@@ -142,24 +142,24 @@ box-shadow:0 -8px 24px rgba(0,0,0,.08);
 </div>
 <div class="pkg popular selected" data-qty="2" role="button" tabindex="0">
 <div class="pkg-top">
-<h3>علبتين</h3>
-<div class="pkg-price">27 <small>ر.ع</small> <span class="pkg-old">42</span></div>
+<h3>2+1 مجاناً</h3>
+<div class="pkg-price">29 <small>ر.ع</small> <span class="pkg-old">63</span></div>
 </div>
-<div class="pkg-save">وفّر 15 ر.ع</div>
+<div class="pkg-save">3 علبات — وفّر 34 ر.ع</div>
 </div>
 <div class="pkg best" data-qty="3" role="button" tabindex="0">
 <div class="pkg-top">
-<h3>3 علبات</h3>
-<div class="pkg-price">31 <small>ر.ع</small> <span class="pkg-old">63</span></div>
+<h3>3+2 مجاناً</h3>
+<div class="pkg-price">33 <small>ر.ع</small> <span class="pkg-old">105</span></div>
 </div>
-<div class="pkg-save">وفّر 32 ر.ع</div>
+<div class="pkg-save">5 علبات — وفّر 72 ر.ع</div>
 </div>
 </div>
 
 <div class="order-box" id="checkout-form">
 <div class="order-summary">
-<span id="summary-label">علبتين — 27 ر.ع</span>
-<span class="price" id="summary-price">27 ر.ع</span>
+<span id="summary-label">2+1 مجاناً — 29 ر.ع</span>
+<span class="price" id="summary-price">29 ر.ع</span>
 </div>
 <div id="connect-box" class="connect-box">
 <h3><i class="fas fa-link"></i> خطوة أخيرة — ربط الشيت بالمتجر</h3>
@@ -176,7 +176,7 @@ box-shadow:0 -8px 24px rgba(0,0,0,.08);
 <div id="form-alert" class="form-alert" role="status"></div>
 <form id="order-form" novalidate>
 <input type="hidden" id="field-package" value="2">
-<input type="hidden" id="field-price" value="27">
+<input type="hidden" id="field-price" value="29">
 <div class="form-group">
 <label for="name">الاسم الكامل *</label>
 <input type="text" id="name" name="name" required placeholder="مثال: أحمد بن سعيد" autocomplete="name">
@@ -213,8 +213,8 @@ box-shadow:0 -8px 24px rgba(0,0,0,.08);
 
 <div class="sticky-cta">
 <div class="sticky-info">
-<strong id="sticky-price">27 ر.ع</strong>
-<span id="sticky-label">علبتين · عند الاستلام</span>
+<strong id="sticky-price">29 ر.ع</strong>
+<span id="sticky-label">2+1 مجاناً · عند الاستلام</span>
 </div>
 <button type="submit" form="order-form" class="btn-submit"><i class="fas fa-cart-plus"></i> تأكيد</button>
 </div>
@@ -235,9 +235,9 @@ const connectBox = document.getElementById("connect-box");
 if (!isSheetLinked()) connectBox.classList.add("show");
 
 const PACKAGES = {
-  1: { label: "علبة واحدة", price: 21, summary: "علبة واحدة — 21 ر.ع" },
-  2: { label: "علبتين", price: 27, summary: "علبتين — 27 ر.ع" },
-  3: { label: "3 علبات", price: 31, summary: "3 علبات — 31 ر.ع" }
+  1: { label: "علبة واحدة", price: 21, units: 1, summary: "علبة واحدة — 21 ر.ع" },
+  2: { label: "2+1 مجاناً", price: 29, units: 3, summary: "2+1 مجاناً — 29 ر.ع (3 علبات)" },
+  3: { label: "3+2 مجاناً", price: 33, units: 5, summary: "3+2 مجاناً — 33 ر.ع (5 علبات)" }
 };
 
 let qty = Math.min(3, Math.max(1, Number(new URLSearchParams(location.search).get("qty")) || 2));
@@ -340,7 +340,7 @@ formEl.addEventListener("submit", async (e) => {
 
   const payload = JSON.stringify({
     name, phone, city, address,
-    packageLabel: p.label, packageQty: qty, price: p.price,
+    packageLabel: p.label, packageQty: p.units, price: p.price,
     sku: sku,
     source: "fitgum-oman"
   });
@@ -353,7 +353,7 @@ formEl.addEventListener("submit", async (e) => {
   fetch(COD_WORKER_URL, {
     method  : "POST",
     headers : { "Content-Type": "application/json" },
-    body    : JSON.stringify({ name, phone, city, address, packageQty: qty, price: p.price, packageLabel: p.label })
+    body    : JSON.stringify({ name, phone, city, address, packageQty: p.units, price: p.price, packageLabel: p.label })
   })
   .then(r => r.json())
   .then(r => console.log("[FitGum] COD Network:", r.status, r.data && r.data.id ? "Lead ID=" + r.data.id : JSON.stringify(r)))

@@ -87,17 +87,18 @@
 
   /* ─── PRODUCTS CATALOG ──────────────────────────── */
   var PRODUCTS = {
-    1: { id: 'fitgum-1x', name: 'فيتجوم — علبة واحدة', price: 21 },
-    2: { id: 'fitgum-2x', name: 'فيتجوم — علبتين',      price: 27 },
-    3: { id: 'fitgum-3x', name: 'فيتجوم — 3 علبات',     price: 31 },
+    1: { id: 'fitgum-1x', name: 'فيتجوم — علبة واحدة', price: 21, units: 1 },
+    2: { id: 'fitgum-2p1', name: 'فيتجوم — 2+1 مجاناً', price: 29, units: 3 },
+    3: { id: 'fitgum-3p2', name: 'فيتجوم — 3+2 مجاناً', price: 33, units: 5 },
   };
 
-  function getProduct(qty, price) {
-    var q = parseInt(qty) || 1;
-    var p = parseFloat(price) || (PRODUCTS[q] && PRODUCTS[q].price) || 21;
+  function getProduct(packId, price) {
+    var q = parseInt(packId) || 2;
     var prod = PRODUCTS[q] || PRODUCTS[1];
+    var p = parseFloat(price) || prod.price;
+    var units = prod.units || 1;
     return {
-      contents: [{ content_id: prod.id, content_name: prod.name, content_type: 'product', quantity: q, price: p }],
+      contents: [{ content_id: prod.id, content_name: prod.name, content_type: 'product', quantity: units, price: p }],
       currency: 'OMR',
       value: p
     };
@@ -180,10 +181,10 @@
       try {
         Object.keys(sessionStorage).filter(function(k){ return k.startsWith('fg_'); }).forEach(function(k){ sessionStorage.removeItem(k); });
       } catch(e) {}
-      this.viewContent(2, 27);
-      setTimeout(function() { window.FGPixel.addToCart(2, 27); }, 800);
-      setTimeout(function() { window.FGPixel.initiateCheckout(2, 27, ''); }, 1600);
-      setTimeout(function() { window.FGPixel.purchase({ qty: 2, price: 27, orderId: 'TEST-' + Date.now() }); }, 2400);
+      this.viewContent(2, 29);
+      setTimeout(function() { window.FGPixel.addToCart(2, 29); }, 800);
+      setTimeout(function() { window.FGPixel.initiateCheckout(2, 29, ''); }, 1600);
+      setTimeout(function() { window.FGPixel.purchase({ qty: 2, price: 29, orderId: 'TEST-' + Date.now() }); }, 2400);
     }
   };
 
@@ -194,7 +195,7 @@
   if (page === '' || page === 'index.html') {
     window.addEventListener('load', function () {
       setTimeout(function () {
-        window.FGPixel.viewContent(2, 27);
+        window.FGPixel.viewContent(2, 29);
       }, 800);
     });
   }
