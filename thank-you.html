@@ -203,14 +203,7 @@ text-align:center;margin-top:2rem;font-size:.78rem;color:var(--muted);
     document.getElementById("sum-price").textContent   = price ? price + " ر.ع" : "—";
   }
 
-  /* ── TikTok Purchase event ── */
-  window.addEventListener('load', function () {
-    setTimeout(function () {
-      if (window.FGPixel) {
-        window.FGPixel.purchase({ qty: qty, price: price, phone: phone, orderId: orderId });
-      }
-    }, 1200);
-  });
+  /* CompletePayment fires once from tiktok-pixel.js on this page */
 })();
 </script>
 </body>

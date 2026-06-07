@@ -2,7 +2,7 @@
  * ═══════════════════════════════════════════════════
  *  FITGUM — TikTok Pixel
  *  Pixel ID : D1MFAIJC77U87UH7LNJ0
- *  Version  : 2026-06-v2 | COD | Oman/GCC
+ *  Version  : 2026-06-v3 | COD | Oman/GCC
  * ═══════════════════════════════════════════════════
  *
  *  Events per page:
@@ -75,11 +75,12 @@
     }
   }
 
-  /* Check & set session flag — returns true if ALREADY fired (duplicate) */
-  function isDuplicate(key) {
+  /* Check & set dedup flag — returns true if ALREADY fired (duplicate) */
+  function isDuplicate(key, persistent) {
     try {
-      if (sessionStorage.getItem(key)) return true;
-      sessionStorage.setItem(key, '1');
+      var store = persistent ? localStorage : sessionStorage;
+      if (store.getItem(key)) return true;
+      store.setItem(key, '1');
       return false;
     } catch (e) { return false; }
   }
@@ -146,10 +147,17 @@
     /* Call on thank-you page — CompletePayment = COD conversion event */
     purchase: function (opts) {
       opts = opts || {};
-      var orderId = opts.orderId || qp('orderId') || uid();
+      var orderId = opts.orderId || qp('orderId') || '';
+      var phone   = opts.phone   || qp('phone')   || '';
 
-      /* Dedup check BEFORE firing */
-      if (isDuplicate('fg_cp_' + orderId)) {
+      /* Only fire for real orders — need orderId + phone from checkout redirect */
+      if (!orderId || !phone) {
+        log('CompletePayment SKIPPED (missing orderId/phone)', { orderId: orderId, phone: phone });
+        return;
+      }
+
+      /* Persistent dedup — survives refresh/new tab */
+      if (isDuplicate('fg_cp_' + orderId, true)) {
         log('CompletePayment BLOCKED (duplicate)', orderId);
         return;
       }
@@ -160,9 +168,7 @@
       data.event_id = uid();
       data.order_id = orderId;
 
-      if (opts.phone || qp('phone')) {
-        identifyUser(opts.phone || qp('phone'));
-      }
+      identifyUser(phone);
 
       /* CompletePayment only — the correct COD conversion event for TikTok */
       window.ttq.track('CompletePayment', data);

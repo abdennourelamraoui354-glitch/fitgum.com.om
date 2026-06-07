@@ -302,6 +302,10 @@ formEl.addEventListener("submit", async (e) => {
     showAlert("error", "يرجى تعبئة جميع الحقول.");
     return;
   }
+  if (name.split(/\s+/).filter(Boolean).length < 2) {
+    showAlert("error", "اكتب الاسم الكامل: الاسم الأول واسم العائلة.");
+    return;
+  }
   const sheetUrl = getSheetUrl();
   if (!isSheetLinked()) {
     connectBox.classList.add("show");
