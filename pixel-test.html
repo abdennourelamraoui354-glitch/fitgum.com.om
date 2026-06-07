@@ -150,17 +150,17 @@ function firePageView() {
 }
 
 function fireViewContent() {
-  if (window.FGPixel) { window.FGPixel.viewContent(2, 27); addLog('ViewContent', {qty:2,price:27,currency:'OMR'}, '#4caf50'); }
+  if (window.FGPixel) { window.FGPixel.viewContent(2, 29); addLog('ViewContent', {qty:2,price:29,currency:'OMR'}, '#4caf50'); }
   else addLog('ERROR', 'FGPixel not loaded', '#ff5252');
 }
 
 function fireAddToCart() {
-  if (window.FGPixel) { window.FGPixel.addToCart(2, 27); addLog('AddToCart', {qty:2,price:27,currency:'OMR'}, '#ff9800'); }
+  if (window.FGPixel) { window.FGPixel.addToCart(2, 29); addLog('AddToCart', {qty:2,price:29,currency:'OMR'}, '#ff9800'); }
   else addLog('ERROR', 'FGPixel not loaded', '#ff5252');
 }
 
 function fireInitiateCheckout() {
-  if (window.FGPixel) { window.FGPixel.initiateCheckout(2, 27, '+96891234567'); addLog('InitiateCheckout', {qty:2,price:27,phone:'hashed'}, '#ffeb3b'); }
+  if (window.FGPixel) { window.FGPixel.initiateCheckout(2, 29, '+96891234567'); addLog('InitiateCheckout', {qty:2,price:29,phone:'hashed'}, '#ffeb3b'); }
   else addLog('ERROR', 'FGPixel not loaded', '#ff5252');
 }
 
@@ -169,8 +169,8 @@ function firePurchase() {
   /* clear dedup key so test re-fires */
   try { sessionStorage.removeItem('fg_purchase_' + oid); } catch(e) {}
   if (window.FGPixel) {
-    window.FGPixel.purchase({qty:2, price:27, phone:'+96891234567', orderId: oid});
-    addLog('CompletePayment + Purchase', {qty:2,price:27,orderId:oid,currency:'OMR'}, '#EE1D52');
+    window.FGPixel.purchase({qty:2, price:29, phone:'+96891234567', orderId: oid});
+    addLog('CompletePayment', {qty:2,price:29,orderId:oid,currency:'OMR'}, '#EE1D52');
   } else addLog('ERROR', 'FGPixel not loaded', '#ff5252');
 }
 

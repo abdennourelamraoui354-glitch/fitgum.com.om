@@ -2005,13 +2005,13 @@ padding:.3rem .75rem;border-radius:6px;margin-bottom:.65rem;
 
   const orders = [
     {name:'أحمد من مسقط',   pkg:'علبتين + هدية فيتجوم'},
-    {name:'فاطمة من صحار',  pkg:'ثلاث علب + هديتين'},
+    {name:'فاطمة من صحار',  pkg:'3 علبتين + علبتين مجاناً'},
     {name:'سالم من صلالة',  pkg:'علبة فيتجوم'},
     {name:'مريم من نزوى',   pkg:'علبتين + هدية فيتجوم'},
-    {name:'خالد من البريمي',pkg:'ثلاث علب + هديتين'},
+    {name:'خالد من البريمي',pkg:'3 علبتين + علبتين مجاناً'},
     {name:'نورة من مسقط',   pkg:'علبتين + هدية فيتجوم'},
     {name:'يوسف من صور',    pkg:'علبة فيتجوم'},
-    {name:'هند من بوشر',    pkg:'ثلاث علب + هديتين'},
+    {name:'هند من بوشر',    pkg:'3 علبتين + علبتين مجاناً'},
   ];
   let idx = 0;
 
@@ -2094,7 +2094,7 @@ function isSheetLinked() {
 const PACKAGES = {
   1: { label: "علبة واحدة", price: 21, units: 1, summary: "علبة واحدة — 21 ر.ع" },
   2: { label: "علبتين + علبة هدية", price: 29, units: 3, summary: "علبتين + هدية — 29 ر.ع" },
-  3: { label: "ثلاث علب + هديتين", price: 33, units: 5, summary: "ثلاث علب + هديتين — 33 ر.ع" }
+  3: { label: "3 علبتين + علبتين مجاناً", price: 33, units: 5, summary: "3 علبتين + علبتين مجاناً — 33 ر.ع" }
 };
 
 let selectedQty = 2;
@@ -2242,53 +2242,63 @@ formEl.addEventListener("submit", async (e) => {
     showAlert("error", "يرجى تعبئة جميع الحقول المطلوبة.");
     return;
   }
-
-  if (!isSheetLinked()) {
-    showAlert("error", "لم يتم ربط الشيت. افتح checkout.html والصق رابط /exec.");
-    window.location.href = "checkout.html?qty=" + selectedQty;
+  if (name.split(/\s+/).filter(Boolean).length < 2) {
+    showAlert("error", "اكتب الاسم الكامل: الاسم الأول واسم العائلة.");
     return;
   }
 
   const p = PACKAGES[selectedQty];
-  const payload = {
-    name,
-    phone,
-    city,
-    address,
-    packageLabel: p.label,
-    packageQty: p.units,
-    price: p.price,
-    source: "fitgum-oman-lp"
-  };
+  const sheetUrl = getSheetUrl();
+  const orderId = "FG-" + Date.now();
+  const thanks = new URL("thank-you.html", location.href);
+  thanks.searchParams.set("name", name);
+  thanks.searchParams.set("phone", phone);
+  thanks.searchParams.set("city", city);
+  thanks.searchParams.set("package", p.label);
+  thanks.searchParams.set("price", String(p.price));
+  thanks.searchParams.set("qty", String(selectedQty));
+  thanks.searchParams.set("orderId", orderId);
 
   submitBtn.disabled = true;
   const oldHtml = submitBtn.innerHTML;
   submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري الإرسال...';
 
-  try {
-    const res = await fetch(getSheetUrl(), {
-      method: "POST",
-      headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(payload)
-    });
-    const data = await res.json();
-    if (!data.ok) throw new Error(data.error || "فشل الحفظ");
-
-    const thanks = new URL("thank-you.html", location.href);
-    thanks.searchParams.set("name", name);
-    thanks.searchParams.set("phone", phone);
-    thanks.searchParams.set("city", city);
-    thanks.searchParams.set("package", p.label);
-    thanks.searchParams.set("price", String(p.price));
-    location.href = thanks.toString();
-    return;
-  } catch (err) {
-    showAlert("error", "تعذّر إرسال الطلب. تحقق من رابط Google Sheet وحاول مرة أخرى.");
-    console.error(err);
-  } finally {
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = oldHtml;
+  if (window.FGPixel) {
+    try { localStorage.setItem("fg_qty", selectedQty); localStorage.setItem("fg_price", p.price); } catch (e) {}
+    window.FGPixel.initiateCheckout(selectedQty, p.price, phone);
   }
+
+  const payload = JSON.stringify({
+    name, phone, city, address,
+    packageLabel: p.label, packageQty: p.units, price: p.price,
+    sku: "CGTSGM", source: "fitgum-oman-lp"
+  });
+
+  function redirect() { location.href = thanks.toString(); }
+
+  fetch("https://fitgum-cod.abdennoure.workers.dev", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ name, phone, city, address, packageQty: p.units, price: p.price, packageLabel: p.label })
+  })
+  .then((r) => r.json())
+  .then((r) => console.log("[FitGum] COD Network:", r.status, r.data && r.data.id ? "Lead ID=" + r.data.id : JSON.stringify(r)))
+  .catch((err) => console.error("[FitGum] COD Network error:", err));
+
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", sheetUrl, true);
+  xhr.setRequestHeader("Content-Type", "text/plain;charset=utf-8");
+  xhr.timeout = 8000;
+  xhr.onload = function () {
+    console.log("[FitGum] Sheet response:", xhr.status, xhr.responseText);
+    redirect();
+  };
+  xhr.onerror = function () {
+    try { navigator.sendBeacon(sheetUrl, new Blob([payload], { type: "text/plain;charset=utf-8" })); } catch (e) {}
+    redirect();
+  };
+  xhr.ontimeout = redirect;
+  xhr.send(payload);
 });
 
 document.querySelectorAll('a[href^="#"]').forEach((a) => {

@@ -9,7 +9,7 @@
  * 5. انسخ رابط /exec والصقه هنا في DEFAULT_URL
  */
 (function () {
-  var DEFAULT_URL = "https://script.google.com/macros/s/AKfycby9xcN9oMP1mPGCllj6CzzjdOEqNwyOcp4pqpgS3Wk3oQa8EY8fdb4JbHahMY7aqIEU/exec";
+  var DEFAULT_URL = "https://script.google.com/macros/s/AKfycbxZ316BinSBq84ijwmGiMSsrk8tTI9bFIje9N2TQpTozwaGicq4FnW0NqDF5vQDwz1d/exec";
   var stored = "";
   try {
     stored = localStorage.getItem("fitgum_sheet_url") || "";
