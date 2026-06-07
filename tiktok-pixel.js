@@ -89,7 +89,7 @@
   var PRODUCTS = {
     1: { id: 'fitgum-1x', name: 'فيتجوم — علبة واحدة', price: 21, units: 1 },
     2: { id: 'fitgum-2p1', name: 'فيتجوم — علبتين + علبة هدية', price: 29, units: 3 },
-    3: { id: 'fitgum-3p2', name: 'فيتجوم — ثلاث علب + هديتين', price: 33, units: 5 },
+    3: { id: 'fitgum-3p2', name: 'فيتجوم — 3 علبتين + علبتين مجاناً', price: 33, units: 5 },
   };
 
   function getProduct(packId, price) {

@@ -149,10 +149,10 @@ box-shadow:0 -8px 24px rgba(0,0,0,.08);
 </div>
 <div class="pkg best" data-qty="3" role="button" tabindex="0">
 <div class="pkg-top">
-<h3>ثلاث علب واحصل على هديتين مجاناً</h3>
+<h3>3 علبتين واحصل على علبتين مجاناً</h3>
 <div class="pkg-price">33 <small>ر.ع</small> <span class="pkg-old">105</span></div>
 </div>
-<div class="pkg-save">ادفع 3 علب · هديتين مجاناً 🎁</div>
+<div class="pkg-save">ادفع 3 علبتين · علبتين مجاناً 🎁</div>
 </div>
 </div>
 
@@ -236,8 +236,8 @@ if (!isSheetLinked()) connectBox.classList.add("show");
 
 const PACKAGES = {
   1: { label: "علبة واحدة", price: 21, units: 1, summary: "علبة واحدة — 21 ر.ع" },
-  2: { label: "2+1 مجاناً", price: 29, units: 3, summary: "2+1 مجاناً — 29 ر.ع (3 علبات)" },
-  3: { label: "3+2 مجاناً", price: 33, units: 5, summary: "3+2 مجاناً — 33 ر.ع (5 علبات)" }
+  2: { label: "علبتين + علبة هدية", price: 29, units: 3, summary: "علبتين + هدية — 29 ر.ع" },
+  3: { label: "ثلاث علب + هديتين", price: 33, units: 5, summary: "ثلاث علب + هديتين — 33 ر.ع" }
 };
 
 let qty = Math.min(3, Math.max(1, Number(new URLSearchParams(location.search).get("qty")) || 2));
@@ -388,4 +388,4 @@ formEl.addEventListener("submit", async (e) => {
 setTimeout(() => document.getElementById("name")?.focus(), 400);
 </script>
 </body>
-</
+</html>
